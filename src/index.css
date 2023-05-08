@@ -1,1 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@200;300;400;500;600;700;800&family=Modak&family=Mrs+Sheppards&family=Sigmar&display=swap");
+/* font-family: 'Kanit', sans-serif;
+font-family: 'Modak', cursive;
+font-family: 'Mrs Sheppards', cursive;
+font-family: 'Sigmar', cursive; */
 
+html {
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  background-color: rgb(255, 250, 182);
+}

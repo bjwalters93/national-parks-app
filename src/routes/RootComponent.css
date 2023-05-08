@@ -1,0 +1,40 @@
+.Root {
+  margin: 0;
+  /* border: 1px solid black; */
+  /* background-color: rgb(255, 248, 148); */
+}
+
+.NavBar {
+  padding: 30px;
+  background-color: rgb(14, 36, 0);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Logo {
+  font-family: "Sigmar", cursive;
+  color: white;
+  font-size: 30px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+ul {
+  margin: 0;
+  list-style-type: none;
+}
+
+.NavLinks a {
+  color: white;
+  text-decoration: none;
+  font-family: "Kanit", sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.NavLinks a.active {
+  color: rgb(255, 238, 0);
+  /* text-decoration: underline; */
+}
