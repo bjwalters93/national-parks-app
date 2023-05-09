@@ -1,0 +1,24 @@
+/* @import "~react-image-gallery/styles/css/image-gallery.css"; */
+/* https://www.npmjs.com/package/react-image-gallery */
+
+.Park {
+  /* border: 1px solid black; */
+  max-width: 1000px;
+  margin: 0 auto;
+  font-family: "Kanit", sans-serif;
+}
+
+.gallery_container {
+  width: 800px;
+  /* border: 1px solid green; */
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.image_class {
+  display: block;
+  object-fit: cover;
+  width: 200px;
+  height: 200px;
+}

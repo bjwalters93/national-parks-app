@@ -11,8 +11,8 @@ export async function getPark({ request }: any) {
     const response = await fetch(
       `https://developer.nps.gov/api/v1/parks?limit=1000&stateCode=${searchTerm}&api_key=9JlgO9YSfRlkWXenMR8S3X3uW9uW0cZBdycA46tm`
     );
-    const parkData = await response.json();
-    return parkData.data;
+    const parksData = await response.json();
+    return parksData.data;
   } else return null;
 }
 
