@@ -3,7 +3,8 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import RootComponent from "./routes/RootComponent";
 import IndexHome from "./routes/IndexHome";
-import FindPark from "./routes/FindPark";
+import FindPark, { getPark } from "./routes/FindPark";
+import Park, { loadPark } from "./routes/Park";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -15,6 +16,12 @@ const router = createBrowserRouter([
       {
         path: "find_park",
         element: <FindPark />,
+        loader: getPark,
+      },
+      {
+        path: "park/:park",
+        element: <Park />,
+        loader: loadPark,
       },
     ],
   },
