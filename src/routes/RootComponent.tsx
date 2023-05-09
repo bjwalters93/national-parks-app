@@ -16,11 +16,8 @@ function RootComponent() {
           All Parks
         </NavLink>
         <nav className="NavLinks">
-          <ul>
-            <li>
-              <NavLink to={`find_park`}>Find Park</NavLink>
-            </li>
-          </ul>
+          <NavLink to={"/"}>Home</NavLink>
+          <NavLink to={`find_park`}>Find Park</NavLink>
         </nav>
       </div>
       <Outlet />

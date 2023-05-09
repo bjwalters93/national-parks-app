@@ -27,6 +27,7 @@ ul {
 }
 
 .NavLinks a {
+  margin: 0 20px;
   color: white;
   text-decoration: none;
   font-family: "Kanit", sans-serif;

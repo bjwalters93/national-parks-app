@@ -2,8 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import RootComponent from "./routes/RootComponent";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import IndexHome from "./routes/IndexHome";
+import FindPark from "./routes/FindPark";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
@@ -13,7 +14,7 @@ const router = createBrowserRouter([
       { index: true, element: <IndexHome /> },
       {
         path: "find_park",
-        element: <h1>Find Park</h1>,
+        element: <FindPark />,
       },
     ],
   },
