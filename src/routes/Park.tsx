@@ -1,6 +1,6 @@
 import React from "react";
 import "./Park.css";
-import { useLoaderData, Link } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import Lightbox from "yet-another-react-lightbox";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import Inline from "yet-another-react-lightbox/plugins/inline";
@@ -56,6 +56,9 @@ function Park() {
         link back to find parks ---- goes here!!!
       </p>
       <p style={{ margin: 0, color: "red" }}>weather ---- goes here!!!</p>
+      <p style={{ margin: 0, color: "red" }}>
+        what is lazy loading?? react router,,,,yet another lightbox
+      </p>
       <h1>{data.park[0].fullName}</h1>
       <p>{data.park[0].description}</p>
       <Lightbox
@@ -65,7 +68,7 @@ function Park() {
           style: {
             margin: "0 auto",
             width: "100%",
-            maxWidth: "800px",
+            // maxWidth: "800px",
             aspectRatio: "3 / 2",
           },
         }}

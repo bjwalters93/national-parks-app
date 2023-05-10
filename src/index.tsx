@@ -4,6 +4,7 @@ import "./index.css";
 import RootComponent from "./routes/RootComponent";
 import IndexHome from "./routes/IndexHome";
 import FindPark, { getPark } from "./routes/FindPark";
+import Videos, { loadVideos } from "./routes/Videos";
 import Park, { loadPark } from "./routes/Park";
 import ParkMain from "./routes/ParkMain";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
           { index: true, element: <Park />, loader: loadPark },
           { path: "activities", element: <h1>Activites</h1> },
           { path: "people", element: <h1>People</h1> },
-          { path: "videos", element: <h1>Videos</h1> },
+          { path: "videos", element: <Videos />, loader: loadVideos },
           { path: "campgrounds", element: <h1>Campgrounds</h1> },
           { path: "directions", element: <h1>Directions</h1> },
         ],
