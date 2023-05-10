@@ -28,7 +28,16 @@ function Park() {
   const data = useLoaderData() as ReturnType<any>;
   console.log("data:", data);
 
-  const imagesArr = data.images.map((image: any, index: any) => {
+  const imagesArr1 = data.park[0].images.map((image: any) => {
+    return {
+      src: image.url,
+      alt: image.altText,
+      title: image.title,
+      description: image.caption,
+    };
+  });
+
+  const imagesArr2 = data.images.map((image: any) => {
     return {
       src: image.images[0].url,
       alt: image.images[0].altText,
@@ -37,10 +46,16 @@ function Park() {
     };
   });
 
-  console.log(imagesArr);
+  const combinedImagesArr = [...imagesArr1, ...imagesArr2];
+
+  console.log(combinedImagesArr);
 
   return (
     <div className="Park">
+      <p style={{ margin: 0, color: "red" }}>
+        link back to find parks ---- goes here!!!
+      </p>
+      <p style={{ margin: 0, color: "red" }}>weather ---- goes here!!!</p>
       <h1>{data.park[0].fullName}</h1>
       <p>{data.park[0].description}</p>
       <Lightbox
@@ -54,7 +69,7 @@ function Park() {
             aspectRatio: "3 / 2",
           },
         }}
-        slides={[...imagesArr]}
+        slides={[...combinedImagesArr]}
       />
     </div>
   );

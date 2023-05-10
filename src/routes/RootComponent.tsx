@@ -1,6 +1,6 @@
 import React from "react";
 import "./RootComponent.css";
-import logo from "../images/mountain-icon_white.png";
+import logo from "../images/mountain-icon_green.png";
 import { Outlet, NavLink } from "react-router-dom";
 
 function RootComponent() {

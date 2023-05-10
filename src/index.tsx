@@ -5,6 +5,7 @@ import RootComponent from "./routes/RootComponent";
 import IndexHome from "./routes/IndexHome";
 import FindPark, { getPark } from "./routes/FindPark";
 import Park, { loadPark } from "./routes/Park";
+import ParkMain from "./routes/ParkMain";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -20,8 +21,15 @@ const router = createBrowserRouter([
       },
       {
         path: "park/:park",
-        element: <Park />,
-        loader: loadPark,
+        element: <ParkMain />,
+        children: [
+          { index: true, element: <Park />, loader: loadPark },
+          { path: "activities", element: <h1>Activites</h1> },
+          { path: "people", element: <h1>People</h1> },
+          { path: "videos", element: <h1>Videos</h1> },
+          { path: "campgrounds", element: <h1>Campgrounds</h1> },
+          { path: "directions", element: <h1>Directions</h1> },
+        ],
       },
     ],
   },
