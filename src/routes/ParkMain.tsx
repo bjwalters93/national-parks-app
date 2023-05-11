@@ -1,7 +1,6 @@
 import * as React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, NavLink } from "react-router-dom";
 import "./ParkMain.css";
-import { NavLink } from "react-router-dom";
 
 function ParkMain() {
   return (

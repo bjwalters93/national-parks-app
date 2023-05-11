@@ -1,8 +1,7 @@
 import React from "react";
-import { Form } from "react-router-dom";
 import "./FindPark.css";
 import { stateCodes } from "../utilityData";
-import { useLoaderData, Link } from "react-router-dom";
+import { useLoaderData, Link, Form } from "react-router-dom";
 
 type parkListData = {
   parkCode: string;

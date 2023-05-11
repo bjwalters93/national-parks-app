@@ -6,6 +6,7 @@ import IndexHome from "./routes/IndexHome";
 import FindPark, { getPark } from "./routes/FindPark";
 import Videos, { loadVideos } from "./routes/Videos";
 import Park, { loadPark } from "./routes/Park";
+import Directions, { loadDirections } from "./routes/Directions";
 import ParkMain from "./routes/ParkMain";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -39,18 +40,8 @@ const router = createBrowserRouter([
           },
           {
             path: "directions",
-            element: (
-              <iframe
-                title="maps"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3054.2299566745933!2d-84.22461582326206!3d40.04796887150145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x883f76fbfa5f436b%3A0xccad31946f0fa16a!2s1245%20W%20Main%20St%2C%20Troy%2C%20OH%2045373!5e0!3m2!1sen!2sus!4v1683819893431!5m2!1sen!2sus"
-                width="600"
-                height="450"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
-            ),
+            element: <Directions />,
+            loader: loadDirections,
           },
         ],
       },
