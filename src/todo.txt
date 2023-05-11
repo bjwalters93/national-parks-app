@@ -1,0 +1,8 @@
+- link back to search.
+
+- pull in weather data from weather api.
+
+- make sure to put the states under title in <Parks />, its in the park data as a string under states. Will have to convert
+string to array and do a map or for each.
+
+- put a back to Find Park link on every page.

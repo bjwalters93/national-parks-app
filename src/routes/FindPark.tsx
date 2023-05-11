@@ -1,7 +1,7 @@
 import React from "react";
 import "./FindPark.css";
 import { stateCodes } from "../utilityData";
-import { useLoaderData, Link, Form } from "react-router-dom";
+import { useLoaderData, Link, Form, useSearchParams } from "react-router-dom";
 
 type parkListData = {
   parkCode: string;
@@ -25,6 +25,8 @@ export async function getPark({
 }
 
 function FindPark() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const currentStateCode = searchParams.get("state");
   const parksList = useLoaderData() as parkListData;
   console.log("parksList:", parksList);
   let parkArr: React.ReactElement[] = [];
@@ -32,7 +34,9 @@ function FindPark() {
     parkArr = parksList.map((park) => {
       return (
         <li key={park.parkCode}>
-          <Link to={"/park/" + park.parkCode}>{park.fullName}</Link>
+          <Link to={"/park/" + park.parkCode} state={{ currentStateCode }}>
+            {park.fullName}
+          </Link>
         </li>
       );
     });
@@ -41,7 +45,11 @@ function FindPark() {
     <div className="FindPark">
       <h1>Find your park.</h1>
       <Form method="get" action="/find_park">
-        <select id="state" name="state">
+        <select
+          id="state"
+          name="state"
+          defaultValue={currentStateCode !== null ? currentStateCode : ""}
+        >
           {stateCodes.map((state, index) => (
             <option key={index} value={state.code}>
               {state.name}

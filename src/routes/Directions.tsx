@@ -64,7 +64,7 @@ function Directions() {
           width="100%"
           height="600px"
           frameBorder="0"
-          style={{ border: 0 }}
+          style={{ border: "20px solid black" }}
           referrerPolicy="no-referrer-when-downgrade"
           src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyA9haWt2RZPcj4Dbl2xy3u1IigLmlQ-JTc&q=${mapUrlString}`}
           allowFullScreen

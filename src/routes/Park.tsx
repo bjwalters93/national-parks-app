@@ -1,6 +1,6 @@
 import React from "react";
 import "./Park.css";
-import { Params, useLoaderData } from "react-router-dom";
+import { Params, useLoaderData, Link, useLocation } from "react-router-dom";
 import Lightbox from "yet-another-react-lightbox";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import Inline from "yet-another-react-lightbox/plugins/inline";
@@ -11,6 +11,7 @@ import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import "yet-another-react-lightbox/plugins/captions.css";
 import "yet-another-react-lightbox/plugins/counter.css";
+import arrowIcon from "../images/arrowIcon.png";
 
 type parkData = {
   park: {
@@ -46,6 +47,9 @@ export async function loadPark({
 
 function Park() {
   const parkData = useLoaderData() as parkData;
+  const linkState = useLocation();
+  const backLinkValue = linkState.state.currentStateCode;
+  console.log("backLinkValue:", backLinkValue);
   console.log("parkData:", parkData);
 
   const imagesArr1: {
@@ -80,14 +84,14 @@ function Park() {
 
   return (
     <div className="Park">
-      <p style={{ margin: 0, color: "red" }}>
-        link back to find parks ---- goes here!!!
-      </p>
-      <p style={{ margin: 0, color: "red" }}>weather ---- goes here!!!</p>
-      <p style={{ margin: 0, color: "red" }}>
-        endangered species api could go hand in hand!!!
-      </p>
-      <h1>{parkData.park[0].fullName}</h1>
+      <div className="backlink__container">
+        <Link to={`/find_park?state=${backLinkValue}`} className="back__link">
+          <img src={arrowIcon} alt="back arrow" height="10px" />
+          <span className="back__text">Back to Find Park</span>
+        </Link>
+      </div>
+
+      <h1 className="park__title">{parkData.park[0].fullName}</h1>
       <p>{parkData.park[0].description}</p>
       <Lightbox
         plugins={[Inline, Thumbnails, Captions, Counter, Fullscreen]}
