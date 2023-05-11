@@ -6,6 +6,7 @@
 .NavBar {
   padding: 30px;
   background-color: rgb(14, 36, 0);
+  background-color: rgb(10, 25, 0);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -14,8 +15,9 @@
 .Logo {
   font-family: "Sigmar", cursive;
   font-size: 30px;
-  /* color: #2cff28; */
   color: white;
+  color: #2cff28;
+  color: #ff9428;
   text-decoration: none;
   display: flex;
   align-items: center;
