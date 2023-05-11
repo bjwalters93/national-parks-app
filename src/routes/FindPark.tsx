@@ -1,10 +1,14 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { Form } from "react-router-dom";
 import "./FindPark.css";
 import { stateCodes } from "../utilityData";
 import { useLoaderData, Link } from "react-router-dom";
 
-export async function getPark({ request }: any) {
+export async function getPark({
+  request,
+}: {
+  request: Request;
+}): Promise<ParkData | null> {
   let url = new URL(request.url);
   let searchTerm = url.searchParams.get("state");
   if (searchTerm !== null) {
@@ -12,19 +16,48 @@ export async function getPark({ request }: any) {
       `https://developer.nps.gov/api/v1/parks?limit=1000&stateCode=${searchTerm}&api_key=9JlgO9YSfRlkWXenMR8S3X3uW9uW0cZBdycA46tm`
     );
     const parksData = await response.json();
-    return parksData.data;
+    try {
+      assertParkData(parksData.data);
+      return parksData.data;
+    } catch (e) {
+      console.log(e);
+      return null;
+    }
   } else return null;
 }
 
+type ParkData = {
+  parkCode: string;
+  fullName: string;
+}[];
+
+function assertParkData(arg: unknown): asserts arg is ParkData {
+  if (typeof arg !== "object") {
+    throw new Error('Arg is not of type "ParkData"!!!');
+  }
+
+  if (arg && (!("parkCode" in arg) || !("fullName" in arg))) {
+    throw new Error('Arg is not of type "ParkData"!!!');
+  }
+
+  if (
+    arg &&
+    (typeof arg.parkCode !== "string" || typeof arg.fullName !== "string")
+  ) {
+    throw new Error('Arg is not of type "ParkData"!!!');
+  }
+}
+
 function FindPark() {
-  const parks = useLoaderData() as ReturnType<any>;
+  const parks = useLoaderData() as ParkData;
+  assertParkData(parks);
   console.log("parksLoaderData:", parks);
-  let parkArr = [];
+  let parkArr: ReactElement[] = [];
   if (parks !== null) {
-    parkArr = parks.map((parkEl: any) => {
+    parkArr = parks.map((park) => {
       return (
-        <li key={parkEl.parkCode}>
-          <Link to={"/park/" + parkEl.parkCode}>{parkEl.fullName}</Link>
+        <li key={park.parkCode}>
+          <Link to={"/park/" + park.parkCode}>{park.fullName}</Link>
         </li>
       );
     });
