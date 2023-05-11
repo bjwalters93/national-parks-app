@@ -1,8 +1,13 @@
-import React, { ReactElement } from "react";
+import React from "react";
 import { Form } from "react-router-dom";
 import "./FindPark.css";
 import { stateCodes } from "../utilityData";
 import { useLoaderData, Link } from "react-router-dom";
+
+type ParkData = {
+  parkCode: string;
+  fullName: string;
+}[];
 
 export async function getPark({
   request,
@@ -16,43 +21,14 @@ export async function getPark({
       `https://developer.nps.gov/api/v1/parks?limit=1000&stateCode=${searchTerm}&api_key=9JlgO9YSfRlkWXenMR8S3X3uW9uW0cZBdycA46tm`
     );
     const parksData = await response.json();
-    try {
-      assertParkData(parksData.data);
-      return parksData.data;
-    } catch (e) {
-      console.log(e);
-      return null;
-    }
+    return parksData.data;
   } else return null;
-}
-
-type ParkData = {
-  parkCode: string;
-  fullName: string;
-}[];
-
-function assertParkData(arg: unknown): asserts arg is ParkData {
-  if (typeof arg !== "object") {
-    throw new Error('Arg is not of type "ParkData"!!!');
-  }
-
-  if (arg && (!("parkCode" in arg) || !("fullName" in arg))) {
-    throw new Error('Arg is not of type "ParkData"!!!');
-  }
-
-  if (
-    arg &&
-    (typeof arg.parkCode !== "string" || typeof arg.fullName !== "string")
-  ) {
-    throw new Error('Arg is not of type "ParkData"!!!');
-  }
 }
 
 function FindPark() {
   const parks = useLoaderData() as ParkData;
-  assertParkData(parks);
   console.log("parksLoaderData:", parks);
-  let parkArr: ReactElement[] = [];
+  let parkArr: React.ReactElement[] = [];
   if (parks !== null) {
     parkArr = parks.map((park) => {
       return (

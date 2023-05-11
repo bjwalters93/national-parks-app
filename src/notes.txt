@@ -1,0 +1,5 @@
+Typescript Notes:
+
+* - as = type assertion, used when typescript doesn't know about something and you do. example, useLoaderData.
+
+* - alias and interfaces are almost identical, except interfaces are for objects only.
