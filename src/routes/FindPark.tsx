@@ -4,7 +4,7 @@ import "./FindPark.css";
 import { stateCodes } from "../utilityData";
 import { useLoaderData, Link } from "react-router-dom";
 
-type ParkData = {
+type parkListData = {
   parkCode: string;
   fullName: string;
 }[];
@@ -13,7 +13,7 @@ export async function getPark({
   request,
 }: {
   request: Request;
-}): Promise<ParkData | null> {
+}): Promise<parkListData | null> {
   let url = new URL(request.url);
   let searchTerm = url.searchParams.get("state");
   if (searchTerm !== null) {
@@ -26,11 +26,11 @@ export async function getPark({
 }
 
 function FindPark() {
-  const parks = useLoaderData() as ParkData;
-  console.log("parksLoaderData:", parks);
+  const parksList = useLoaderData() as parkListData;
+  console.log("parksList:", parksList);
   let parkArr: React.ReactElement[] = [];
-  if (parks !== null) {
-    parkArr = parks.map((park) => {
+  if (parksList !== null) {
+    parkArr = parksList.map((park) => {
       return (
         <li key={park.parkCode}>
           <Link to={"/park/" + park.parkCode}>{park.fullName}</Link>

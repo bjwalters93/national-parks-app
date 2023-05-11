@@ -1,6 +1,6 @@
 import React from "react";
 import "./Park.css";
-import { useLoaderData } from "react-router-dom";
+import { Params, useLoaderData } from "react-router-dom";
 import Lightbox from "yet-another-react-lightbox";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import Inline from "yet-another-react-lightbox/plugins/inline";
@@ -12,7 +12,27 @@ import "yet-another-react-lightbox/plugins/thumbnails.css";
 import "yet-another-react-lightbox/plugins/captions.css";
 import "yet-another-react-lightbox/plugins/counter.css";
 
-export async function loadPark({ params }: any) {
+type parkData = {
+  park: {
+    images: { url: string; altText: string; title: string; caption: string }[];
+    fullName: string;
+    description: string;
+  }[];
+  images: {
+    images: {
+      url: string;
+      altText: string;
+      title: string;
+      description: string;
+    }[];
+  }[];
+};
+
+export async function loadPark({
+  params,
+}: {
+  params: Params;
+}): Promise<parkData | null> {
   const parkResponse = await fetch(
     `https://developer.nps.gov/api/v1/parks?parkCode=${params.park}&api_key=9JlgO9YSfRlkWXenMR8S3X3uW9uW0cZBdycA46tm`
   );
@@ -25,10 +45,15 @@ export async function loadPark({ params }: any) {
 }
 
 function Park() {
-  const data = useLoaderData() as ReturnType<any>;
-  console.log("data:", data);
+  const parkData = useLoaderData() as parkData;
+  console.log("parkData:", parkData);
 
-  const imagesArr1 = data.park[0].images.map((image: any) => {
+  const imagesArr1: {
+    src: string;
+    alt: string;
+    title: string;
+    description: string;
+  }[] = parkData.park[0].images.map((image) => {
     return {
       src: image.url,
       alt: image.altText,
@@ -37,7 +62,12 @@ function Park() {
     };
   });
 
-  const imagesArr2 = data.images.map((image: any) => {
+  const imagesArr2: {
+    src: string;
+    alt: string;
+    title: string;
+    description: string;
+  }[] = parkData.images.map((image) => {
     return {
       src: image.images[0].url,
       alt: image.images[0].altText,
@@ -48,19 +78,14 @@ function Park() {
 
   const combinedImagesArr = [...imagesArr1, ...imagesArr2];
 
-  console.log(combinedImagesArr);
-
   return (
     <div className="Park">
       <p style={{ margin: 0, color: "red" }}>
         link back to find parks ---- goes here!!!
       </p>
       <p style={{ margin: 0, color: "red" }}>weather ---- goes here!!!</p>
-      <p style={{ margin: 0, color: "red" }}>
-        what is lazy loading?? react router,,,,yet another lightbox
-      </p>
-      <h1>{data.park[0].fullName}</h1>
-      <p>{data.park[0].description}</p>
+      <h1>{parkData.park[0].fullName}</h1>
+      <p>{parkData.park[0].description}</p>
       <Lightbox
         plugins={[Inline, Thumbnails, Captions, Counter, Fullscreen]}
         counter={{ style: { top: 24 } }}

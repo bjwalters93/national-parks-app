@@ -1,7 +1,7 @@
 import * as React from "react";
 import "./Videos.css";
-import { useLoaderData } from "react-router-dom";
-import Lightbox from "yet-another-react-lightbox";
+import { Params, useLoaderData } from "react-router-dom";
+import Lightbox, { Slide } from "yet-another-react-lightbox";
 import Video from "yet-another-react-lightbox/plugins/video";
 import Inline from "yet-another-react-lightbox/plugins/inline";
 import Counter from "yet-another-react-lightbox/plugins/counter";
@@ -11,21 +11,29 @@ import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/counter.css";
 import "yet-another-react-lightbox/plugins/captions.css";
 
-export async function loadVideos({ params }: any) {
+type videoData = {
+  title: string;
+  versions: { url: string }[];
+  splashImage: { url: string };
+}[];
+
+export async function loadVideos({
+  params,
+}: {
+  params: Params;
+}): Promise<videoData> {
   const videoResponse = await fetch(
     `https://developer.nps.gov/api/v1/multimedia/videos?limit=1000&parkCode=${params.park}&api_key=9JlgO9YSfRlkWXenMR8S3X3uW9uW0cZBdycA46tm`
   );
   const videoData = await videoResponse.json();
-
-  //   return { park: parkData.data, images: imageData.data };
   return videoData.data;
 }
 
 function Videos() {
-  const data = useLoaderData() as ReturnType<any>;
-  console.log("videoData:", data);
+  const videoData = useLoaderData() as videoData;
+  console.log("videoData:", videoData);
 
-  const videoArr = data.map((video: any) => {
+  const videoArr: Slide[] = videoData.map((video) => {
     return {
       type: "video",
       width: 1280,
@@ -42,18 +50,11 @@ function Videos() {
     };
   });
 
+  console.log("videoArr:", videoArr);
+
   return (
     <div className="Videos">
       <h1>Videos</h1>
-      {/* <iframe
-        src={`https://www.nps.gov/media/video/embed.htm?id=${data[0].id}`}
-        src={`https://www.nps.gov/nps-audiovideo/audiovideo/28a52eac-59b3-462f-a17f-d4448dfb1334360p.mp4`}
-        width="480"
-        height="306"
-        allowFullScreen
-        title="hello"
-        style={{ border: "none" }}
-      ></iframe> */}
       <Lightbox
         plugins={[Video, Inline, Counter, Captions, Fullscreen]}
         slides={[...videoArr]}
