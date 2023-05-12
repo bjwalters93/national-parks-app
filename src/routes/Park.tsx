@@ -39,7 +39,7 @@ export async function loadPark({
   );
   const parkData = await parkResponse.json();
   const imageResponse = await fetch(
-    `https://developer.nps.gov/api/v1/multimedia/galleries/assets?limit=1000&parkCode=${params.park}&api_key=9JlgO9YSfRlkWXenMR8S3X3uW9uW0cZBdycA46tm`
+    `https://developer.nps.gov/api/v1/multimedia/galleries/assets?limit=5000&parkCode=${params.park}&api_key=9JlgO9YSfRlkWXenMR8S3X3uW9uW0cZBdycA46tm`
   );
   const imageData = await imageResponse.json();
   return { park: parkData.data, images: imageData.data };
