@@ -3,7 +3,7 @@
   max-width: 1000px;
   margin: 0 auto;
   font-family: "Kanit", sans-serif;
-  /* font-weight: 600; */
+  padding: 0 40px;
 }
 
 .submit_state_btn {
@@ -27,4 +27,60 @@
 .submit_state_btn:focus {
   outline: none;
   border: 2px solid rgb(10, 25, 0);
+}
+
+.select_el_find_park {
+  font-family: "Kanit", sans-serif;
+  font-size: 16px;
+  padding: 2px 20px;
+  border-radius: 5px;
+}
+
+.select_el_find_park:hover {
+  cursor: pointer;
+}
+
+.list_container {
+  margin: 20px 0 0 0;
+  padding: 0;
+}
+
+.park_links {
+  display: block;
+  color: black;
+}
+
+.li_find_park {
+  padding: 0;
+  display: flex;
+  align-items: flex-start;
+  padding: 20px 0;
+}
+
+.li_find_park p {
+  margin: 5px 0 0 0;
+}
+
+.li_find_park span {
+  font-weight: 600;
+}
+
+.li_find_park_image {
+  display: block;
+  width: 125px;
+  height: 125px;
+  object-fit: cover;
+  border: 2px solid black;
+  margin: 0 50px 0 0;
+  border-radius: 100px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+.li_titles {
+  margin: 0;
+}
+
+.li_designation {
+  margin: 0;
+  font-weight: 600;
 }

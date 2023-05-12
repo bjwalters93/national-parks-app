@@ -20,12 +20,12 @@ type parkData = {
     description: string;
   }[];
   images: {
-    images: {
+    title: string;
+    altText: string;
+    description: string;
+    fileInfo: {
       url: string;
-      altText: string;
-      title: string;
-      description: string;
-    }[];
+    };
   }[];
 };
 
@@ -39,7 +39,7 @@ export async function loadPark({
   );
   const parkData = await parkResponse.json();
   const imageResponse = await fetch(
-    `https://developer.nps.gov/api/v1/multimedia/galleries?limit=1000&parkCode=${params.park}&api_key=9JlgO9YSfRlkWXenMR8S3X3uW9uW0cZBdycA46tm`
+    `https://developer.nps.gov/api/v1/multimedia/galleries/assets?limit=1000&parkCode=${params.park}&api_key=9JlgO9YSfRlkWXenMR8S3X3uW9uW0cZBdycA46tm`
   );
   const imageData = await imageResponse.json();
   return { park: parkData.data, images: imageData.data };
@@ -48,6 +48,7 @@ export async function loadPark({
 function Park() {
   const Park_LD = useLoaderData() as parkData;
   const Park_params = useParams();
+  console.log(Park_LD);
 
   const imagesArr1: {
     src: string;
@@ -70,10 +71,10 @@ function Park() {
     description: string;
   }[] = Park_LD.images.map((image) => {
     return {
-      src: image.images[0].url,
-      alt: image.images[0].altText,
-      title: image.images[0].title,
-      description: image.images[0].description,
+      src: image.fileInfo.url,
+      alt: image.altText,
+      title: image.title,
+      description: image.description,
     };
   });
 

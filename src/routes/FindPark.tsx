@@ -1,13 +1,17 @@
 import React from "react";
 import "./FindPark.css";
 import { stateCodes } from "../utilityData";
-import { useLoaderData, Link, Form } from "react-router-dom";
+import { useLoaderData, Link, Form, redirect } from "react-router-dom";
 
 type parkListData = {
   stateCode: string;
   parkList: {
     parkCode: string;
     fullName: string;
+    designation: string;
+    states: string;
+    description: string;
+    images: { url: string; altText: string }[];
   }[];
 };
 
@@ -33,10 +37,29 @@ function FindPark() {
   if (FindPark_LD !== null) {
     parkArr = FindPark_LD.parkList.map((park) => {
       return (
-        <li key={park.parkCode}>
-          <Link to={"/park/" + FindPark_LD.stateCode + "/" + park.parkCode}>
-            {park.fullName}
-          </Link>
+        <li className="li_find_park" key={park.parkCode}>
+          <div>
+            <img
+              src={park.images[0].url}
+              alt={park.images[0].altText}
+              className="li_find_park_image"
+            />
+          </div>
+          <div>
+            <h3 className="li_titles">
+              <Link
+                className="park_links"
+                to={"/park/" + FindPark_LD.stateCode + "/" + park.parkCode}
+              >
+                {park.fullName}
+              </Link>
+            </h3>
+            <h4 className="li_designation">{park.designation}</h4>
+            <p>
+              <span>States:</span> {park.states}
+            </p>
+            <p>{park.description}</p>
+          </div>
         </li>
       );
     });
@@ -50,6 +73,7 @@ function FindPark() {
           id="state"
           name="state"
           defaultValue={FindPark_LD !== null ? FindPark_LD.stateCode : ""}
+          className="select_el_find_park"
         >
           {stateCodes.map((state, index) => (
             <option key={index} value={state.code}>
@@ -61,7 +85,7 @@ function FindPark() {
           Submit
         </button>
       </Form>
-      {parkArr.length > 0 && <ul>{parkArr}</ul>}
+      {parkArr.length > 0 && <ul className="list_container">{parkArr}</ul>}
     </div>
   );
 }
