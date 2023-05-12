@@ -30,10 +30,8 @@ export async function loadVideos({
 }
 
 function Videos() {
-  const videoData = useLoaderData() as videoData;
-  console.log("videoData:", videoData);
-
-  const videoArr: Slide[] = videoData.map((video) => {
+  const Videos_LD = useLoaderData() as videoData;
+  const videoArr: Slide[] = Videos_LD.map((video) => {
     return {
       type: "video",
       width: 1280,
@@ -49,8 +47,6 @@ function Videos() {
       ],
     };
   });
-
-  console.log("videoArr:", videoArr);
 
   return (
     <div className="Videos">

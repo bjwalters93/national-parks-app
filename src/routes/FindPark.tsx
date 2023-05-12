@@ -1,12 +1,15 @@
 import React from "react";
 import "./FindPark.css";
 import { stateCodes } from "../utilityData";
-import { useLoaderData, Link, Form, useSearchParams } from "react-router-dom";
+import { useLoaderData, Link, Form } from "react-router-dom";
 
 type parkListData = {
-  parkCode: string;
-  fullName: string;
-}[];
+  stateCode: string;
+  parkList: {
+    parkCode: string;
+    fullName: string;
+  }[];
+};
 
 export async function getPark({
   request,
@@ -20,21 +23,18 @@ export async function getPark({
       `https://developer.nps.gov/api/v1/parks?limit=1000&stateCode=${searchTerm}&api_key=9JlgO9YSfRlkWXenMR8S3X3uW9uW0cZBdycA46tm`
     );
     const parksData = await response.json();
-    return parksData.data;
+    return { stateCode: searchTerm, parkList: parksData.data };
   } else return null;
 }
 
 function FindPark() {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const currentStateCode = searchParams.get("state");
-  const parksList = useLoaderData() as parkListData;
-  console.log("parksList:", parksList);
+  const FindPark_LD = useLoaderData() as parkListData;
   let parkArr: React.ReactElement[] = [];
-  if (parksList !== null) {
-    parkArr = parksList.map((park) => {
+  if (FindPark_LD !== null) {
+    parkArr = FindPark_LD.parkList.map((park) => {
       return (
         <li key={park.parkCode}>
-          <Link to={"/park/" + park.parkCode} state={{ currentStateCode }}>
+          <Link to={"/park/" + FindPark_LD.stateCode + "/" + park.parkCode}>
             {park.fullName}
           </Link>
         </li>
@@ -48,7 +48,7 @@ function FindPark() {
         <select
           id="state"
           name="state"
-          defaultValue={currentStateCode !== null ? currentStateCode : ""}
+          defaultValue={FindPark_LD !== null ? FindPark_LD.stateCode : ""}
         >
           {stateCodes.map((state, index) => (
             <option key={index} value={state.code}>

@@ -1,6 +1,6 @@
 import React from "react";
 import "./Park.css";
-import { Params, useLoaderData, Link, useLocation } from "react-router-dom";
+import { Params, useLoaderData, Link, useParams } from "react-router-dom";
 import Lightbox from "yet-another-react-lightbox";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import Inline from "yet-another-react-lightbox/plugins/inline";
@@ -46,18 +46,15 @@ export async function loadPark({
 }
 
 function Park() {
-  const parkData = useLoaderData() as parkData;
-  const linkState = useLocation();
-  const backLinkValue = linkState.state.currentStateCode;
-  console.log("backLinkValue:", backLinkValue);
-  console.log("parkData:", parkData);
+  const Park_LD = useLoaderData() as parkData;
+  const Park_params = useParams();
 
   const imagesArr1: {
     src: string;
     alt: string;
     title: string;
     description: string;
-  }[] = parkData.park[0].images.map((image) => {
+  }[] = Park_LD.park[0].images.map((image) => {
     return {
       src: image.url,
       alt: image.altText,
@@ -71,7 +68,7 @@ function Park() {
     alt: string;
     title: string;
     description: string;
-  }[] = parkData.images.map((image) => {
+  }[] = Park_LD.images.map((image) => {
     return {
       src: image.images[0].url,
       alt: image.images[0].altText,
@@ -85,14 +82,17 @@ function Park() {
   return (
     <div className="Park">
       <div className="backlink__container">
-        <Link to={`/find_park?state=${backLinkValue}`} className="back__link">
+        <Link
+          to={`/find_park?state=${Park_params.stateCode}`}
+          className="back__link"
+        >
           <img src={arrowIcon} alt="back arrow" height="10px" />
           <span className="back__text">Back to Find Park</span>
         </Link>
       </div>
 
-      <h1 className="park__title">{parkData.park[0].fullName}</h1>
-      <p>{parkData.park[0].description}</p>
+      <h1 className="park__title">{Park_LD.park[0].fullName}</h1>
+      <p>{Park_LD.park[0].description}</p>
       <Lightbox
         plugins={[Inline, Thumbnails, Captions, Counter, Fullscreen]}
         counter={{ style: { top: 24 } }}

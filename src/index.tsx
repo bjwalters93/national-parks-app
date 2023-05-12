@@ -22,7 +22,7 @@ const router = createBrowserRouter([
         loader: getPark,
       },
       {
-        path: "park/:park",
+        path: "park/:stateCode/:park",
         element: <ParkMain />,
         children: [
           { index: true, element: <Park />, loader: loadPark },
