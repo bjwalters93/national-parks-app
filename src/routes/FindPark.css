@@ -5,3 +5,26 @@
   font-family: "Kanit", sans-serif;
   /* font-weight: 600; */
 }
+
+.submit_state_btn {
+  font-family: "Kanit", sans-serif;
+  font-weight: 500;
+  background-color: rgb(56, 140, 0);
+  color: white;
+  border: none;
+  padding: 2px 20px;
+  font-size: 16px;
+  margin-left: 10px;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+  border: 2px solid rgb(56, 140, 0);
+  border-radius: 5px;
+}
+
+.submit_state_btn:hover {
+  cursor: pointer;
+}
+
+.submit_state_btn:focus {
+  outline: none;
+  border: 2px solid rgb(10, 25, 0);
+}

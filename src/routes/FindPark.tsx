@@ -44,6 +44,7 @@ function FindPark() {
   return (
     <div className="FindPark">
       <h1>Find your park.</h1>
+      <h2>Select a State</h2>
       <Form method="get" action="/find_park">
         <select
           id="state"
@@ -56,7 +57,9 @@ function FindPark() {
             </option>
           ))}
         </select>
-        <button type="submit">Submit</button>
+        <button className="submit_state_btn" type="submit">
+          Submit
+        </button>
       </Form>
       {parkArr.length > 0 && <ul>{parkArr}</ul>}
     </div>
