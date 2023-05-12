@@ -12,6 +12,7 @@ import "yet-another-react-lightbox/plugins/thumbnails.css";
 import "yet-another-react-lightbox/plugins/captions.css";
 import "yet-another-react-lightbox/plugins/counter.css";
 import arrowIcon from "../images/arrowIcon.png";
+import LazyLoad from "react-lazy-load";
 
 type parkData = {
   park: {
@@ -46,6 +47,7 @@ export async function loadPark({
 }
 
 function Park() {
+  //   window.scrollTo(0, 0);
   const Park_LD = useLoaderData() as parkData;
   const Park_params = useParams();
   console.log(Park_LD);
@@ -78,7 +80,21 @@ function Park() {
     };
   });
 
-  const combinedImagesArr = [...imagesArr1, ...imagesArr2];
+  const imagesArr3: {
+    src: string;
+    alt: string;
+    title: string;
+    description: string;
+  }[] = Park_LD.images.map((image) => {
+    return {
+      src: image.fileInfo.url,
+      alt: image.altText,
+      title: image.title,
+      description: image.description,
+    };
+  });
+
+  const combinedImagesArr: any = [...imagesArr1, ...imagesArr2];
 
   return (
     <div className="Park">
@@ -94,7 +110,7 @@ function Park() {
 
       <h1 className="park__title">{Park_LD.park[0].fullName}</h1>
       <p>{Park_LD.park[0].description}</p>
-      <Lightbox
+      {/* <Lightbox
         plugins={[Inline, Thumbnails, Captions, Counter, Fullscreen]}
         counter={{ style: { top: 24 } }}
         inline={{
@@ -106,7 +122,37 @@ function Park() {
           },
         }}
         slides={[...combinedImagesArr]}
-      />
+        // index={5}
+      /> */}
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          height: "500px",
+          overflowY: "scroll",
+          justifyContent: "center",
+        }}
+      >
+        {imagesArr3.map((image) => {
+          return (
+            <LazyLoad height={340} width={440} threshold={0.55}>
+              <img
+                style={{
+                  width: "400px",
+                  height: "300px",
+                  objectFit: "cover",
+                  display: "block",
+                  border: "10px solid black",
+                  margin: "20px",
+                  boxShadow: "3px 3px 5px rgba(0, 0, 0, 0.5)",
+                }}
+                src={image.src}
+                alt={image.alt}
+              />
+            </LazyLoad>
+          );
+        })}
+      </div>
     </div>
   );
 }

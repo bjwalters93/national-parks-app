@@ -2,6 +2,7 @@ import React from "react";
 import "./FindPark.css";
 import { stateCodes } from "../utilityData";
 import { useLoaderData, Link, Form } from "react-router-dom";
+import LazyLoad from "react-lazy-load";
 
 type parkListData = {
   stateCode: string;
@@ -32,18 +33,21 @@ export async function getPark({
 }
 
 function FindPark() {
+  //   window.scrollTo(0, 0);
   const FindPark_LD = useLoaderData() as parkListData;
   let parkArr: React.ReactElement[] = [];
   if (FindPark_LD !== null) {
     parkArr = FindPark_LD.parkList.map((park) => {
       return (
         <li className="li_find_park" key={park.parkCode}>
-          <div>
-            <img
-              src={park.images[0].url}
-              alt={park.images[0].altText}
-              className="li_find_park_image"
-            />
+          <div style={{ margin: "0 50px 0 0" }}>
+            <LazyLoad height={125} width={125} threshold={0.1}>
+              <img
+                src={park.images[0].url}
+                alt={park.images[0].altText}
+                className="li_find_park_image"
+              />
+            </LazyLoad>
           </div>
           <div>
             <h3 className="li_titles">
