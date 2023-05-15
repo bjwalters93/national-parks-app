@@ -33,7 +33,6 @@ export async function getPark({
 }
 
 function FindPark() {
-  //   window.scrollTo(0, 0);
   const FindPark_LD = useLoaderData() as parkListData;
   let parkArr: React.ReactElement[] = [];
   if (FindPark_LD !== null) {

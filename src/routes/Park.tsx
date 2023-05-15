@@ -3,18 +3,18 @@ import "./Park.css";
 import { Params, useLoaderData, Link, useParams } from "react-router-dom";
 import Lightbox from "yet-another-react-lightbox";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
-import Inline from "yet-another-react-lightbox/plugins/inline";
+// import Inline from "yet-another-react-lightbox/plugins/inline";
 import Captions from "yet-another-react-lightbox/plugins/captions";
 import Counter from "yet-another-react-lightbox/plugins/counter";
 import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
+import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import "yet-another-react-lightbox/plugins/captions.css";
 import "yet-another-react-lightbox/plugins/counter.css";
 import arrowIcon from "../images/arrowIcon.png";
 import LazyLoad from "react-lazy-load";
-import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
-import Zoom from "yet-another-react-lightbox/plugins/zoom";
 
 type parkData = {
   park: {
@@ -49,7 +49,6 @@ export async function loadPark({
 }
 
 function Park() {
-  //   window.scrollTo(0, 0);
   const Park_LD = useLoaderData() as parkData;
   const Park_params = useParams();
   console.log(Park_LD);
@@ -83,21 +82,7 @@ function Park() {
     };
   });
 
-  const imagesArr3: {
-    src: string;
-    alt: string;
-    title: string;
-    description: string;
-  }[] = Park_LD.images.map((image) => {
-    return {
-      src: image.fileInfo.url,
-      alt: image.altText,
-      title: image.title,
-      description: image.description,
-    };
-  });
-
-  const combinedImagesArr: any = [...imagesArr1, ...imagesArr2];
+  const combinedImagesArr = [...imagesArr1, ...imagesArr2];
 
   return (
     <div className="Park">
@@ -125,30 +110,15 @@ function Park() {
           },
         }}
         slides={[...combinedImagesArr]}
-        // index={5}
       /> */}
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          //   height: "500px",
-          //   overflowY: "scroll",
-          justifyContent: "center",
-        }}
-      >
-        {imagesArr3.map((image, index) => {
+      <h2 style={{ marginBottom: "0" }}>Photo Album</h2>
+      <p style={{ marginTop: "0" }}>{combinedImagesArr.length} Images</p>
+      <div className="image_gallery_container">
+        {combinedImagesArr.map((image, index) => {
           return (
-            <LazyLoad height={340} width={440} threshold={0.55}>
+            <LazyLoad height={220} width={220} threshold={0.1}>
               <img
-                style={{
-                  width: "400px",
-                  height: "300px",
-                  objectFit: "cover",
-                  display: "block",
-                  border: "10px solid black",
-                  margin: "20px",
-                  boxShadow: "3px 3px 5px rgba(0, 0, 0, 0.5)",
-                }}
+                className="gallery_images"
                 src={image.src}
                 alt={image.alt}
                 onClick={() => {
@@ -158,17 +128,15 @@ function Park() {
             </LazyLoad>
           );
         })}
+        <Lightbox
+          slides={[...combinedImagesArr]}
+          open={index >= 0}
+          index={index}
+          close={() => setIndex(-1)}
+          plugins={[Fullscreen, Slideshow, Thumbnails, Zoom, Counter, Captions]}
+          counter={{ style: { top: 24 } }}
+        />
       </div>
-
-      <Lightbox
-        slides={imagesArr3}
-        open={index >= 0}
-        index={index}
-        close={() => setIndex(-1)}
-        // enable optional lightbox plugins
-        plugins={[Fullscreen, Slideshow, Thumbnails, Zoom, Counter, Captions]}
-        counter={{ style: { top: 24 } }}
-      />
     </div>
   );
 }

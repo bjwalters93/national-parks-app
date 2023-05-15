@@ -2,21 +2,7 @@
   max-width: 1000px;
   margin: 0 auto;
   font-family: "Kanit", sans-serif;
-  height: 5000px;
-}
-
-.gallery_container {
-  width: 800px;
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.image_class {
-  display: block;
-  object-fit: cover;
-  width: 200px;
-  height: 200px;
+  padding: 0 40px;
 }
 
 .park__title {
@@ -31,7 +17,6 @@
 }
 
 .back__link {
-  /* text-decoration: none; */
   color: black;
 }
 
@@ -41,6 +26,26 @@
   font-weight: 500;
 }
 
+.image_gallery_container {
+  display: flex;
+  flex-wrap: wrap;
+  width: auto;
+  height: 440px;
+  overflow-y: scroll;
+  justify-content: center;
+}
+
+.gallery_images {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  margin: 10px;
+  border-radius: 20px;
+}
+
 .LazyLoad {
   opacity: 0;
   transition: all 1s ease-in-out;
@@ -48,6 +53,10 @@
 
 .is-visible {
   opacity: 1;
+}
+
+.yarl__container {
+  font-family: "Kanit", sans-serif;
 }
 
 /* .yarl__root {

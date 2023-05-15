@@ -21,7 +21,11 @@ function RootComponent() {
         </nav>
       </div>
       <Outlet />
-      <ScrollRestoration />
+      <ScrollRestoration
+        getKey={(location, matches) => {
+          return location.pathname;
+        }}
+      />
     </div>
   );
 }
