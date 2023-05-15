@@ -13,6 +13,8 @@ import "yet-another-react-lightbox/plugins/captions.css";
 import "yet-another-react-lightbox/plugins/counter.css";
 import arrowIcon from "../images/arrowIcon.png";
 import LazyLoad from "react-lazy-load";
+import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
 
 type parkData = {
   park: {
@@ -51,6 +53,7 @@ function Park() {
   const Park_LD = useLoaderData() as parkData;
   const Park_params = useParams();
   console.log(Park_LD);
+  const [index, setIndex] = React.useState(-1);
 
   const imagesArr1: {
     src: string;
@@ -133,7 +136,7 @@ function Park() {
           justifyContent: "center",
         }}
       >
-        {imagesArr3.map((image) => {
+        {imagesArr3.map((image, index) => {
           return (
             <LazyLoad height={340} width={440} threshold={0.55}>
               <img
@@ -148,11 +151,24 @@ function Park() {
                 }}
                 src={image.src}
                 alt={image.alt}
+                onClick={() => {
+                  setIndex(index);
+                }}
               />
             </LazyLoad>
           );
         })}
       </div>
+
+      <Lightbox
+        slides={imagesArr3}
+        open={index >= 0}
+        index={index}
+        close={() => setIndex(-1)}
+        // enable optional lightbox plugins
+        plugins={[Fullscreen, Slideshow, Thumbnails, Zoom, Counter, Captions]}
+        counter={{ style: { top: 24 } }}
+      />
     </div>
   );
 }
