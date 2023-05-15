@@ -1,7 +1,7 @@
 import React from "react";
 import "./RootComponent.css";
 import logo from "../images/mountain-icon_green.png";
-import { Outlet, NavLink } from "react-router-dom";
+import { Outlet, NavLink, ScrollRestoration } from "react-router-dom";
 
 function RootComponent() {
   return (
@@ -21,6 +21,7 @@ function RootComponent() {
         </nav>
       </div>
       <Outlet />
+      <ScrollRestoration />
     </div>
   );
 }

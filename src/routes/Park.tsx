@@ -128,8 +128,8 @@ function Park() {
         style={{
           display: "flex",
           flexWrap: "wrap",
-          height: "500px",
-          overflowY: "scroll",
+          //   height: "500px",
+          //   overflowY: "scroll",
           justifyContent: "center",
         }}
       >
