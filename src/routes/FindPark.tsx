@@ -3,6 +3,7 @@ import "./FindPark.css";
 import { stateCodes } from "../utilityData";
 import { useLoaderData, Link, Form } from "react-router-dom";
 import LazyLoad from "react-lazy-load";
+import ImageError from "../images/ImageError.png";
 
 type parkListData = {
   stateCode: string;
@@ -32,6 +33,10 @@ export async function getPark({
   } else return null;
 }
 
+function imageError(event: React.SyntheticEvent<HTMLImageElement, Event>) {
+  event.currentTarget.src = ImageError;
+}
+
 function FindPark() {
   const FindPark_LD = useLoaderData() as parkListData;
   let parkArr: React.ReactElement[] = [];
@@ -45,6 +50,7 @@ function FindPark() {
                 src={park.images[0].url}
                 alt={park.images[0].altText}
                 className="li_find_park_image"
+                onError={imageError}
               />
             </LazyLoad>
           </div>

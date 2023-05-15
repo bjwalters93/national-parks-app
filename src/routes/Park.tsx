@@ -15,6 +15,7 @@ import "yet-another-react-lightbox/plugins/captions.css";
 import "yet-another-react-lightbox/plugins/counter.css";
 import arrowIcon from "../images/arrowIcon.png";
 import LazyLoad from "react-lazy-load";
+import ImageError from "../images/ImageError.png";
 
 type parkData = {
   park: {
@@ -46,6 +47,10 @@ export async function loadPark({
   );
   const imageData = await imageResponse.json();
   return { park: parkData.data, images: imageData.data };
+}
+
+function imageError(event: React.SyntheticEvent<HTMLImageElement, Event>) {
+  event.currentTarget.src = ImageError;
 }
 
 function Park() {
@@ -116,7 +121,7 @@ function Park() {
       <div className="image_gallery_container">
         {combinedImagesArr.map((image, index) => {
           return (
-            <LazyLoad height={220} width={220} threshold={0.1}>
+            <LazyLoad key={index} height={220} width={220} threshold={0.1}>
               <img
                 className="gallery_images"
                 src={image.src}
@@ -124,6 +129,7 @@ function Park() {
                 onClick={() => {
                   setIndex(index);
                 }}
+                onError={imageError}
               />
             </LazyLoad>
           );

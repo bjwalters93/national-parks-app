@@ -13,6 +13,7 @@ import "yet-another-react-lightbox/plugins/captions.css";
 
 type videoData = {
   title: string;
+  description: string;
   versions: { url: string }[];
   splashImage: { url: string };
 }[];
@@ -31,6 +32,8 @@ export async function loadVideos({
 
 function Videos() {
   const Videos_LD = useLoaderData() as videoData;
+  console.log("Videos_LD:", Videos_LD);
+  const [index, setIndex] = React.useState(0);
   const videoArr: Slide[] = Videos_LD.map((video) => {
     return {
       type: "video",
@@ -41,7 +44,7 @@ function Videos() {
       poster: video.splashImage.url,
       sources: [
         {
-          src: video.versions[0].url,
+          src: video.versions[0] === undefined ? "" : video.versions[0].url,
           type: "video/mp4",
         },
       ],
@@ -50,20 +53,66 @@ function Videos() {
 
   return (
     <div className="Videos">
-      <h1>Videos</h1>
-      <Lightbox
-        plugins={[Video, Inline, Counter, Captions, Fullscreen]}
-        slides={[...videoArr]}
-        counter={{ style: { top: 24 } }}
-        inline={{
-          style: {
-            margin: "0 auto",
-            width: "100%",
-            // maxWidth: "800px",
-            aspectRatio: "3 / 2",
-          },
+      <h1 style={{ marginBottom: "0" }}>Videos</h1>
+      <p style={{ margin: "0 0 10px 0" }}>{videoArr.length} Videos</p>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "flex-start",
+          msFlex: 1,
+          flex: 1,
         }}
-      />
+      >
+        <Lightbox
+          plugins={[Video, Inline, Counter, Captions, Fullscreen]}
+          slides={[...videoArr]}
+          counter={{ style: { top: 24 } }}
+          inline={{
+            style: {
+              //   margin: "0 auto",
+              width: "75%",
+              aspectRatio: "3 / 2",
+            },
+          }}
+          index={index}
+        />
+        <div
+          style={{
+            width: "25%",
+            overflowY: "scroll",
+            padding: "0 20px",
+            height: "min-content",
+          }}
+        >
+          {Videos_LD.map((video, index) => {
+            return (
+              <div
+                style={{
+                  borderBottom: "1px solid black",
+                  cursor: "pointer",
+                }}
+                onClick={() => setIndex(index)}
+                key={index}
+              >
+                <h3
+                  style={{
+                    margin: "10px 0 5px 0",
+                    fontSize: "14px",
+                    lineHeight: "1.2",
+                    fontWeight: "500",
+                  }}
+                >
+                  {index + 1}/{videoArr.length} - {video.title}
+                </h3>
+                <p style={{ margin: "0 0 10px 0", fontSize: "12px" }}>
+                  {video.description}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }
