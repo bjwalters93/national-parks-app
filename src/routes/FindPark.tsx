@@ -65,7 +65,16 @@ function FindPark() {
             </h3>
             <h4 className="li_designation">{park.designation}</h4>
             <p>
-              <span>States:</span> {park.states}
+              <span>States:</span>{" "}
+              {park.states
+                .split(",")
+                .map((el) => {
+                  let state = stateCodes.find(({ code }) => code === el) as {
+                    name: string;
+                  };
+                  return state.name;
+                })
+                .join(", ")}
             </p>
             <p>{park.description}</p>
           </div>

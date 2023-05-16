@@ -16,6 +16,7 @@ import "yet-another-react-lightbox/plugins/counter.css";
 import arrowIcon from "../images/arrowIcon.png";
 import LazyLoad from "react-lazy-load";
 import ImageError from "../images/ImageError.png";
+import { stateCodes } from "../utilityData";
 
 type parkData = {
   park: {
@@ -166,20 +167,32 @@ function Park() {
       </div>
       <h2>Park Information</h2>
       <p className="left_margin_park_info">
-        <b>Designation: </b>
-        {Park_LD.park[0].designation}
+        <span className="span_bold_1">Designation:</span>{" "}
+        {Park_LD.park[0].designation === ""
+          ? "N/A"
+          : Park_LD.park[0].designation}
       </p>
       <p className="left_margin_park_info">
-        <b>States: </b>
-        {Park_LD.park[0].states}
+        <span className="span_bold_1">States:</span>{" "}
+        {Park_LD.park[0].states
+          ? Park_LD.park[0].states
+              .split(",")
+              .map((el) => {
+                let state = stateCodes.find(({ code }) => code === el) as {
+                  name: string;
+                };
+                return state.name;
+              })
+              .join(", ")
+          : "N/A"}
       </p>
       <p className="left_margin_park_info">
-        <b>Phone Number: </b>
+        <span className="span_bold_1">Phone Number:</span>{" "}
         {Park_LD.park[0].contacts.phoneNumbers[0].phoneNumber}
       </p>
       <div className="left_margin_park_info">
         <p style={{ marginBottom: "0px" }}>
-          <b>Address: </b>
+          <span className="span_bold_1">Address:</span>{" "}
         </p>
         <ul>
           <li>{Park_LD.park[0].addresses[0].line1}</li>
@@ -192,47 +205,90 @@ function Park() {
       </div>
       <div className="left_margin_park_info">
         <p style={{ marginBottom: "0px" }}>
-          <b>Operating Hours: </b>
+          <span className="span_bold_1">Operating Hours:</span>{" "}
           {Park_LD.park[0].operatingHours.length > 0 ? null : "N/A"}
         </p>
-        {Park_LD.park[0].operatingHours.map((el) => {
+        {Park_LD.park[0].operatingHours.map((el, index) => {
           return (
-            <ul>
+            <ul style={{ marginBottom: "10px" }} key={index}>
               <li>
-                <b>{el.name}</b>
+                <span className="span_bold_2">{el.name}</span>
               </li>
               <li>{el.description}</li>
               <ul>
-                <li>Sunday: {el.standardHours.sunday}</li>
-                <li>Monday: {el.standardHours.monday}</li>
-                <li>Tuesday: {el.standardHours.tuesday}</li>
-                <li>Wednesday: {el.standardHours.wednesday}</li>
-                <li>Thursday: {el.standardHours.thursday}</li>
-                <li>Friday: {el.standardHours.friday}</li>
-                <li>Saturday: {el.standardHours.saturday}</li>
+                <li>
+                  <span className="span_bold_2">Sunday:</span>{" "}
+                  {el.standardHours.sunday}
+                </li>
+                <li>
+                  <span className="span_bold_2">Monday:</span>{" "}
+                  {el.standardHours.monday}
+                </li>
+                <li>
+                  <span className="span_bold_2">Tuesday:</span>{" "}
+                  {el.standardHours.tuesday}
+                </li>
+                <li>
+                  <span className="span_bold_2">Wednesday:</span>{" "}
+                  {el.standardHours.wednesday}
+                </li>
+                <li>
+                  <span className="span_bold_2">Thursday:</span>{" "}
+                  {el.standardHours.thursday}
+                </li>
+                <li>
+                  <span className="span_bold_2">Friday:</span>{" "}
+                  {el.standardHours.friday}
+                </li>
+                <li>
+                  <span className="span_bold_2">Saturday:</span>{" "}
+                  {el.standardHours.saturday}
+                </li>
               </ul>
             </ul>
           );
         })}
       </div>
+      <div className="left_margin_park_info">
+        <p style={{ marginBottom: "0px" }}>
+          <span className="span_bold_1">Activities:</span>{" "}
+          {Park_LD.park[0].activities.length > 0 ? null : "N/A"}
+          {Park_LD.park[0].activities
+            .map((el) => {
+              return el.name;
+            })
+            .join(", ")}
+        </p>
+      </div>
+      <div className="left_margin_park_info">
+        <p style={{ marginBottom: "0px" }}>
+          <span className="span_bold_1">Topics:</span>{" "}
+          {Park_LD.park[0].topics.length > 0 ? null : "N/A"}
+          {Park_LD.park[0].topics
+            .map((el) => {
+              return el.name;
+            })
+            .join(", ")}
+        </p>
+      </div>
       <p className="left_margin_park_info">
-        <b>Directions Info: </b>
+        <span className="span_bold_1">Directions Info:</span>{" "}
         {Park_LD.park[0].directionsInfo}
       </p>
       <p className="left_margin_park_info">
-        <b>Weather Info: </b>
+        <span className="span_bold_1">Weather Info:</span>{" "}
         {Park_LD.park[0].weatherInfo}
       </p>
       <div className="left_margin_park_info">
         <p style={{ marginBottom: "0px" }}>
-          <b>Entrance Fees: </b>
+          <span className="span_bold_1">Entrance Fees:</span>{" "}
           {Park_LD.park[0].entranceFees.length > 0 ? null : "N/A"}
         </p>
-        {Park_LD.park[0].entranceFees.map((el) => {
+        {Park_LD.park[0].entranceFees.map((el, index) => {
           return (
-            <ul>
+            <ul style={{ marginBottom: "10px" }} key={index}>
               <li>
-                <b>{el.title}</b>
+                <span className="span_bold_2">{el.title}</span>
               </li>
               <li>${el.cost}</li>
               <li>{el.description}</li>
@@ -242,14 +298,14 @@ function Park() {
       </div>
       <div className="left_margin_park_info">
         <p style={{ marginBottom: "0px" }}>
-          <b>Entrance Passes: </b>
+          <span className="span_bold_1">Entrance Passes:</span>{" "}
           {Park_LD.park[0].entrancePasses.length > 0 ? null : "N/A"}
         </p>
-        {Park_LD.park[0].entrancePasses.map((el) => {
+        {Park_LD.park[0].entrancePasses.map((el, index) => {
           return (
-            <ul>
+            <ul style={{ marginBottom: "10px" }} key={index}>
               <li>
-                <b>{el.title}</b>
+                <span className="span_bold_2">{el.title}</span>
               </li>
               <li>${el.cost}</li>
               <li>{el.description}</li>

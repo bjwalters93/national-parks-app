@@ -11,6 +11,16 @@
 
 .Park ul {
   padding: 0 0 0 30px;
+  font-size: 14px;
+}
+
+.span_bold_1 {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.span_bold_2 {
+  font-weight: 600;
 }
 
 .park__title {

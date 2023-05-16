@@ -1880,7 +1880,7 @@ export const parkIdentification = [
   },
 ];
 
-export const stateCodes = [
+export const stateCodes: { name: string; code: string }[] = [
   {
     name: "Alabama",
     code: "AL",

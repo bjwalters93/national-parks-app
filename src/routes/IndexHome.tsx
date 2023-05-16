@@ -30,7 +30,7 @@ function IndexHome() {
         <Link to="/find_park">click here</Link>. <br />
         2. Select a state and click submit. <br />
         3. A list of Nationally Designated areas will be provided. <br />
-        4. Click a link.
+        4. Follow the links in the navigation bar.
       </p>
       <h2 className="supporting_titles">Disclaimer</h2>
       <p className="p_IndexHome">
