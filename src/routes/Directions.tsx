@@ -35,14 +35,23 @@ function Directions() {
 
   const city = mapAddress[0].city;
   const line1 = mapAddress[0].line1;
-  //   const line2 = mapAddress[0].line2;
-  //   const line3 = mapAddress[0].line3;
+  const line2 = mapAddress[0].line2;
+  const line3 = mapAddress[0].line3;
   const postalCode = mapAddress[0].postalCode;
   const stateCode = mapAddress[0].stateCode;
-  //   const type = mapAddress[0].type;
-  //   const fullName = directionsData[0].fullName;
-  const mapUrlString = encodeURI(`${line1},${city},${stateCode},${postalCode}`);
-  //   const mapUrlString = encodeURI(`${fullName},${city},${stateCode}`);
+  let mapUrlString;
+  if (line1 !== "" && line2 === "" && line3 === "") {
+    mapUrlString = encodeURI(`${line1},${city},${stateCode},${postalCode}`);
+  } else if (line1 !== "" && line2 !== "" && line3 === "") {
+    mapUrlString = encodeURI(
+      `${line1},${line2},${city},${stateCode},${postalCode}`
+    );
+  } else if (line1 !== "" && line2 !== "" && line3 !== "") {
+    mapUrlString = encodeURI(
+      `${line1},${line2},${line3},${city},${stateCode},${postalCode}`
+    );
+  }
+  console.log(mapUrlString);
 
   return (
     <div className="Directions">

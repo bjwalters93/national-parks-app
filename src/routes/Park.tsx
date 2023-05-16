@@ -23,6 +23,8 @@ type parkData = {
     addresses: {
       city: string;
       line1: string;
+      line2: string;
+      line3: string;
       postalCode: string;
       stateCode: string;
     }[];
@@ -35,7 +37,7 @@ type parkData = {
     designation: string;
     directionsInfo: string;
     entranceFees: { cost: string; description: string; title: string }[];
-    entrancesPasses: { cost: string; description: string; title: string }[];
+    entrancePasses: { cost: string; description: string; title: string }[];
     fullName: string;
     images: { url: string; altText: string; title: string; caption: string }[];
     operatingHours: {
@@ -49,11 +51,11 @@ type parkData = {
         thursday: string;
         friday: string;
         saturday: string;
-      }[];
+      };
     }[];
     states: string;
     topics: { name: string }[];
-    weatherInfro: string;
+    weatherInfo: string;
   }[];
   images: {
     title: string;
@@ -135,19 +137,6 @@ function Park() {
 
       <h1 className="park__title">{Park_LD.park[0].fullName}</h1>
       <p>{Park_LD.park[0].description}</p>
-      {/* <Lightbox
-        plugins={[Inline, Thumbnails, Captions, Counter, Fullscreen]}
-        counter={{ style: { top: 24 } }}
-        inline={{
-          style: {
-            margin: "0 auto",
-            width: "100%",
-            // maxWidth: "800px",
-            aspectRatio: "3 / 2",
-          },
-        }}
-        slides={[...combinedImagesArr]}
-      /> */}
       <h2 style={{ marginBottom: "0" }}>Photo Album</h2>
       <p style={{ marginTop: "0" }}>{combinedImagesArr.length} Images</p>
       <div className="image_gallery_container">
@@ -175,6 +164,112 @@ function Park() {
           counter={{ style: { top: 24 } }}
         />
       </div>
+      <h2>Park Information</h2>
+      <p className="left_margin_park_info">
+        <b>Designation: </b>
+        {Park_LD.park[0].designation}
+      </p>
+      <p className="left_margin_park_info">
+        <b>States: </b>
+        {Park_LD.park[0].states}
+      </p>
+      <p className="left_margin_park_info">
+        <b>Phone Number: </b>
+        {Park_LD.park[0].contacts.phoneNumbers[0].phoneNumber}
+      </p>
+      <div className="left_margin_park_info">
+        <p style={{ marginBottom: "0px" }}>
+          <b>Address: </b>
+        </p>
+        <ul>
+          <li>{Park_LD.park[0].addresses[0].line1}</li>
+          <li>{Park_LD.park[0].addresses[0].line2}</li>
+          <li>{Park_LD.park[0].addresses[0].line3}</li>
+          <li>{Park_LD.park[0].addresses[0].city}</li>
+          <li>{Park_LD.park[0].addresses[0].stateCode}</li>
+          <li>{Park_LD.park[0].addresses[0].postalCode}</li>
+        </ul>
+      </div>
+      <div className="left_margin_park_info">
+        <p style={{ marginBottom: "0px" }}>
+          <b>Operating Hours: </b>
+          {Park_LD.park[0].operatingHours.length > 0 ? null : "N/A"}
+        </p>
+        {Park_LD.park[0].operatingHours.map((el) => {
+          return (
+            <ul>
+              <li>
+                <b>{el.name}</b>
+              </li>
+              <li>{el.description}</li>
+              <ul>
+                <li>Sunday: {el.standardHours.sunday}</li>
+                <li>Monday: {el.standardHours.monday}</li>
+                <li>Tuesday: {el.standardHours.tuesday}</li>
+                <li>Wednesday: {el.standardHours.wednesday}</li>
+                <li>Thursday: {el.standardHours.thursday}</li>
+                <li>Friday: {el.standardHours.friday}</li>
+                <li>Saturday: {el.standardHours.saturday}</li>
+              </ul>
+            </ul>
+          );
+        })}
+      </div>
+      <p className="left_margin_park_info">
+        <b>Directions Info: </b>
+        {Park_LD.park[0].directionsInfo}
+      </p>
+      <p className="left_margin_park_info">
+        <b>Weather Info: </b>
+        {Park_LD.park[0].weatherInfo}
+      </p>
+      <div className="left_margin_park_info">
+        <p style={{ marginBottom: "0px" }}>
+          <b>Entrance Fees: </b>
+          {Park_LD.park[0].entranceFees.length > 0 ? null : "N/A"}
+        </p>
+        {Park_LD.park[0].entranceFees.map((el) => {
+          return (
+            <ul>
+              <li>
+                <b>{el.title}</b>
+              </li>
+              <li>${el.cost}</li>
+              <li>{el.description}</li>
+            </ul>
+          );
+        })}
+      </div>
+      <div className="left_margin_park_info">
+        <p style={{ marginBottom: "0px" }}>
+          <b>Entrance Passes: </b>
+          {Park_LD.park[0].entrancePasses.length > 0 ? null : "N/A"}
+        </p>
+        {Park_LD.park[0].entrancePasses.map((el) => {
+          return (
+            <ul>
+              <li>
+                <b>{el.title}</b>
+              </li>
+              <li>${el.cost}</li>
+              <li>{el.description}</li>
+            </ul>
+          );
+        })}
+      </div>
+      {/* <Lightbox
+        plugins={[Inline, Thumbnails, Captions, Counter, Fullscreen]}
+        counter={{ style: { top: 24 } }}
+        inline={{
+          style: {
+            margin: "0 auto",
+            width: "100%",
+            // maxWidth: "800px",
+            aspectRatio: "3 / 2",
+          },
+        }}
+        slides={[...combinedImagesArr]}
+      /> */}
     </div>
   );
 }

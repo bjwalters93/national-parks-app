@@ -2,7 +2,15 @@
   max-width: 1000px;
   margin: 0 auto;
   font-family: "Kanit", sans-serif;
-  padding: 0 40px;
+  padding: 0 40px 40px;
+}
+
+.left_margin_park_info {
+  margin-left: 30px;
+}
+
+.Park ul {
+  padding: 0 0 0 30px;
 }
 
 .park__title {
