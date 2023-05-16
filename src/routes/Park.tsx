@@ -19,9 +19,41 @@ import ImageError from "../images/ImageError.png";
 
 type parkData = {
   park: {
-    images: { url: string; altText: string; title: string; caption: string }[];
-    fullName: string;
+    activities: { name: string }[];
+    addresses: {
+      city: string;
+      line1: string;
+      postalCode: string;
+      stateCode: string;
+    }[];
+    contacts: {
+      phoneNumbers: {
+        phoneNumber: string;
+      }[];
+    };
     description: string;
+    designation: string;
+    directionsInfo: string;
+    entranceFees: { cost: string; description: string; title: string }[];
+    entrancesPasses: { cost: string; description: string; title: string }[];
+    fullName: string;
+    images: { url: string; altText: string; title: string; caption: string }[];
+    operatingHours: {
+      description: string;
+      name: string;
+      standardHours: {
+        sunday: string;
+        monday: string;
+        tuesday: string;
+        wednesday: string;
+        thursday: string;
+        friday: string;
+        saturday: string;
+      }[];
+    }[];
+    states: string;
+    topics: { name: string }[];
+    weatherInfro: string;
   }[];
   images: {
     title: string;
