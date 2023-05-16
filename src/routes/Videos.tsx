@@ -1,6 +1,6 @@
 import * as React from "react";
 import "./Videos.css";
-import { Params, useLoaderData } from "react-router-dom";
+import { Params, useLoaderData, Link, useParams } from "react-router-dom";
 import Lightbox, { Slide } from "yet-another-react-lightbox";
 import Video from "yet-another-react-lightbox/plugins/video";
 import Inline from "yet-another-react-lightbox/plugins/inline";
@@ -10,6 +10,7 @@ import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/counter.css";
 import "yet-another-react-lightbox/plugins/captions.css";
+import arrowIcon from "../images/arrowIcon.png";
 
 type videoData = {
   title: string;
@@ -32,10 +33,9 @@ export async function loadVideos({
 
 function Videos() {
   const [inputHeight, setInputHeight] = React.useState<number>();
-  console.log("inputHeight:", inputHeight);
   const inputRef = React.useRef<HTMLDivElement>(null);
-  console.log("inputRef:", inputRef.current?.clientHeight);
   const Videos_LD = useLoaderData() as videoData;
+  const Videos_params = useParams();
   console.log("Videos_LD:", Videos_LD);
   const [index, setIndex] = React.useState(0);
   const videoArr: Slide[] = Videos_LD.map((video) => {
@@ -56,6 +56,7 @@ function Videos() {
   });
 
   React.useEffect(() => {
+    setInputHeight(inputRef.current?.clientHeight);
     const handleWindowResize = (e: UIEvent) => {
       setInputHeight(inputRef.current?.clientHeight);
     };
@@ -65,10 +66,19 @@ function Videos() {
       window.removeEventListener("resize", handleWindowResize);
     };
   }, []);
-  console.log(inputRef.current?.clientHeight);
+
   return (
     <div className="Videos">
-      <h1 style={{ marginBottom: "0" }}>Videos</h1>
+      <div className="backlink__container">
+        <Link
+          to={`/find_park?state=${Videos_params.stateCode}`}
+          className="back__link"
+        >
+          <img src={arrowIcon} alt="back arrow" height="10px" />
+          <span className="back__text">Back to Find Park</span>
+        </Link>
+      </div>
+      <h1 style={{ marginBottom: "0", marginTop: "0" }}>Videos</h1>
       <p style={{ margin: "0 0 10px 0" }}>{videoArr.length} Videos</p>
       <div
         style={{
@@ -97,6 +107,7 @@ function Videos() {
           style={{
             width: "25%",
             overflowY: "scroll",
+            overflowX: "clip",
             padding: "0 20px",
             height:
               inputHeight === undefined
@@ -104,32 +115,33 @@ function Videos() {
                 : inputHeight,
           }}
         >
-          {Videos_LD.map((video, index) => {
-            return (
-              <div
-                style={{
-                  borderBottom: "1px solid black",
-                  cursor: "pointer",
-                }}
-                onClick={() => setIndex(index)}
-                key={index}
-              >
-                <h3
+          {inputHeight !== undefined &&
+            Videos_LD.map((video, index) => {
+              return (
+                <div
                   style={{
-                    margin: "10px 0 5px 0",
-                    fontSize: "14px",
-                    lineHeight: "1.2",
-                    fontWeight: "500",
+                    borderBottom: "1px solid black",
+                    cursor: "pointer",
                   }}
+                  onClick={() => setIndex(index)}
+                  key={index}
                 >
-                  {index + 1}/{videoArr.length} - {video.title}
-                </h3>
-                <p style={{ margin: "0 0 10px 0", fontSize: "12px" }}>
-                  {video.description}
-                </p>
-              </div>
-            );
-          })}
+                  <h3
+                    style={{
+                      margin: "10px 0 5px 0",
+                      fontSize: "14px",
+                      lineHeight: "1.2",
+                      fontWeight: "500",
+                    }}
+                  >
+                    {index + 1}/{videoArr.length} - {video.title}
+                  </h3>
+                  <p style={{ margin: "0 0 10px 0", fontSize: "12px" }}>
+                    {video.description}
+                  </p>
+                </div>
+              );
+            })}
         </div>
       </div>
     </div>

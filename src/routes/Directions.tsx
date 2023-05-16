@@ -1,6 +1,7 @@
 import * as React from "react";
 import "./Directions.css";
-import { Params, useLoaderData } from "react-router-dom";
+import { Params, useLoaderData, Link, useParams } from "react-router-dom";
+import arrowIcon from "../images/arrowIcon.png";
 
 type parkData = {
   fullName: string;
@@ -29,6 +30,7 @@ export async function loadDirections({
 
 function Directions() {
   const Directions_LD = useLoaderData() as parkData;
+  const Directions_params = useParams();
   const mapAddress = Directions_LD[0].addresses;
 
   const city = mapAddress[0].city;
@@ -44,8 +46,17 @@ function Directions() {
 
   return (
     <div className="Directions">
+      <div className="backlink__container">
+        <Link
+          to={`/find_park?state=${Directions_params.stateCode}`}
+          className="back__link"
+        >
+          <img src={arrowIcon} alt="back arrow" height="10px" />
+          <span className="back__text">Back to Find Park</span>
+        </Link>
+      </div>
+      <h1 style={{ marginTop: "0" }}>Directions</h1>
       <div className="directions_content">
-        <h1>Directions</h1>
         <iframe
           title="directions"
           width="100%"
