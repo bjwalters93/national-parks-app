@@ -31,6 +31,10 @@ export async function loadVideos({
 }
 
 function Videos() {
+  const [inputHeight, setInputHeight] = React.useState<number>();
+  console.log("inputHeight:", inputHeight);
+  const inputRef = React.useRef<HTMLDivElement>(null);
+  console.log("inputRef:", inputRef.current?.clientHeight);
   const Videos_LD = useLoaderData() as videoData;
   console.log("Videos_LD:", Videos_LD);
   const [index, setIndex] = React.useState(0);
@@ -51,6 +55,17 @@ function Videos() {
     };
   });
 
+  React.useEffect(() => {
+    const handleWindowResize = (e: UIEvent) => {
+      setInputHeight(inputRef.current?.clientHeight);
+    };
+
+    window.addEventListener("resize", handleWindowResize);
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
+  console.log(inputRef.current?.clientHeight);
   return (
     <div className="Videos">
       <h1 style={{ marginBottom: "0" }}>Videos</h1>
@@ -64,25 +79,29 @@ function Videos() {
           flex: 1,
         }}
       >
-        <Lightbox
-          plugins={[Video, Inline, Counter, Captions, Fullscreen]}
-          slides={[...videoArr]}
-          counter={{ style: { top: 24 } }}
-          inline={{
-            style: {
-              //   margin: "0 auto",
-              width: "75%",
-              aspectRatio: "3 / 2",
-            },
-          }}
-          index={index}
-        />
+        <div style={{ width: "75%" }} ref={inputRef}>
+          <Lightbox
+            plugins={[Video, Inline, Counter, Captions, Fullscreen]}
+            slides={[...videoArr]}
+            counter={{ style: { top: 24 } }}
+            inline={{
+              style: {
+                // width: "75%",
+                aspectRatio: "3 / 2",
+              },
+            }}
+            index={index}
+          />
+        </div>
         <div
           style={{
             width: "25%",
             overflowY: "scroll",
             padding: "0 20px",
-            height: "min-content",
+            height:
+              inputHeight === undefined
+                ? inputRef.current?.clientHeight
+                : inputHeight,
           }}
         >
           {Videos_LD.map((video, index) => {
