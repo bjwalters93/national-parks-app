@@ -3,7 +3,7 @@
 }
 
 .secondary_navbar {
-  padding: 10px;
+  padding: 10px 40px;
   background-color: rgb(73, 46, 0);
   background-color: rgb(40, 25, 0);
   display: flex;
@@ -13,6 +13,7 @@
   top: 110px;
   width: 100%;
   z-index: 1;
+  box-sizing: border-box;
 }
 
 .secondary_navlinks a {
@@ -27,4 +28,33 @@
 .secondary_navlinks a.active {
   color: white;
   border-bottom: 1px solid rgb(255, 211, 66);
+}
+
+.media_q_secondary_navlinks {
+  display: none;
+}
+
+@media only screen and (max-width: 1333px) {
+  .secondary_navlinks {
+    display: none;
+  }
+  .media_q_secondary_navlinks {
+    display: initial;
+  }
+  .secondary_navbar {
+    justify-content: flex-end;
+  }
+  .nav_menu_btn {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    padding: 0 20px;
+    background-color: rgb(40, 25, 0);
+    color: #ffd342;
+    text-decoration: none;
+    font-family: "Kanit", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+  }
 }

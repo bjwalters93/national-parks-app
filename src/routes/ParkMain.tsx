@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Outlet, NavLink } from "react-router-dom";
 import "./ParkMain.css";
+import menuIconGold from "../images/menuIconGold.png";
 
 function ParkMain() {
   return (
@@ -20,6 +21,17 @@ function ParkMain() {
           <NavLink to="webcams">Webcams</NavLink>
           <NavLink to="amenities">Amenities</NavLink>
           <NavLink to="directions">Directions</NavLink>
+        </nav>
+        <nav className="media_q_secondary_navlinks">
+          <button className="nav_menu_btn">
+            Menu
+            <img
+              src={menuIconGold}
+              alt=""
+              height={18}
+              style={{ marginLeft: "5px" }}
+            />
+          </button>
         </nav>
       </div>
       <Outlet />
