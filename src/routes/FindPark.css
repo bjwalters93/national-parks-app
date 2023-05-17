@@ -1,7 +1,7 @@
 .FindPark {
   /* border: 1px solid black; */
   max-width: 1000px;
-  margin: 0 auto;
+  margin: 120px auto 0;
   font-family: "Kanit", sans-serif;
   padding: 0 40px;
 }

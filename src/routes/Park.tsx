@@ -18,6 +18,14 @@ import LazyLoad from "react-lazy-load";
 import ImageError from "../images/ImageError.png";
 import { stateCodes } from "../utilityData";
 
+// -----------------------------------------------------------------------
+// -----------------------------------------------------------------------
+// DO THIS RATHER THAN CONDITIONAL RENDERING IF POSSIBLE
+// WHY ?? NO NEED TO LISTEN TO SCREEN SIZE
+// Change the CSS display property depending on the screen size.
+// -----------------------------------------------------------------------
+// -----------------------------------------------------------------------
+
 type parkData = {
   park: {
     activities: { name: string }[];
@@ -188,20 +196,26 @@ function Park() {
       </p>
       <p className="left_margin_park_info">
         <span className="span_bold_1">Phone Number:</span>{" "}
-        {Park_LD.park[0].contacts.phoneNumbers[0].phoneNumber}
+        {Park_LD.park[0].contacts.phoneNumbers.length > 0
+          ? Park_LD.park[0].contacts.phoneNumbers[0].phoneNumber
+          : "N/A"}
       </p>
       <div className="left_margin_park_info">
         <p style={{ marginBottom: "0px" }}>
           <span className="span_bold_1">Address:</span>{" "}
         </p>
-        <ul>
-          <li>{Park_LD.park[0].addresses[0].line1}</li>
-          <li>{Park_LD.park[0].addresses[0].line2}</li>
-          <li>{Park_LD.park[0].addresses[0].line3}</li>
-          <li>{Park_LD.park[0].addresses[0].city}</li>
-          <li>{Park_LD.park[0].addresses[0].stateCode}</li>
-          <li>{Park_LD.park[0].addresses[0].postalCode}</li>
-        </ul>
+        {Park_LD.park[0].addresses.length > 0 ? (
+          <ul>
+            <li>{Park_LD.park[0].addresses[0].line1}</li>
+            <li>{Park_LD.park[0].addresses[0].line2}</li>
+            <li>{Park_LD.park[0].addresses[0].line3}</li>
+            <li>{Park_LD.park[0].addresses[0].city}</li>
+            <li>{Park_LD.park[0].addresses[0].stateCode}</li>
+            <li>{Park_LD.park[0].addresses[0].postalCode}</li>
+          </ul>
+        ) : (
+          "N/A"
+        )}
       </div>
       <div className="left_margin_park_info">
         <p style={{ marginBottom: "0px" }}>
@@ -313,21 +327,22 @@ function Park() {
           );
         })}
       </div>
-      {/* <Lightbox
-        plugins={[Inline, Thumbnails, Captions, Counter, Fullscreen]}
-        counter={{ style: { top: 24 } }}
-        inline={{
-          style: {
-            margin: "0 auto",
-            width: "100%",
-            // maxWidth: "800px",
-            aspectRatio: "3 / 2",
-          },
-        }}
-        slides={[...combinedImagesArr]}
-      /> */}
     </div>
   );
 }
 
 export default Park;
+
+// {/* <Lightbox
+//   plugins={[Inline, Thumbnails, Captions, Counter, Fullscreen]}
+//   counter={{ style: { top: 24 } }}
+//   inline={{
+//     style: {
+//       margin: "0 auto",
+//       width: "100%",
+//       // maxWidth: "800px",
+//       aspectRatio: "3 / 2",
+//     },
+//   }}
+//   slides={[...combinedImagesArr]}
+// />; */}

@@ -1,15 +1,21 @@
 .Root {
   margin: 0;
+  /* width: 100%; */
   /* background-color: rgb(255, 248, 148); */
 }
 
 .NavBar {
+  box-sizing: border-box;
+  width: 100%;
+  position: fixed;
+  top: 0;
   padding: 30px;
   background-color: rgb(14, 36, 0);
   background-color: rgb(10, 25, 0);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  z-index: 1;
 }
 
 .Logo {
