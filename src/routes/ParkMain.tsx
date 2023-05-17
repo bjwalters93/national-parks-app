@@ -1,9 +1,15 @@
 import * as React from "react";
 import { Outlet, NavLink } from "react-router-dom";
 import "./ParkMain.css";
-import menuIconGold from "../images/menuIconGold.png";
+import menuIcon2Gold from "../images/menuIcon2Gold.png";
 
 function ParkMain() {
+  const [menuToggle, setMenuToggle] = React.useState(false);
+
+  const menuToggleFunc = () => {
+    setMenuToggle((prev) => !prev);
+  };
+
   return (
     <div className="ParkMain">
       <div className="secondary_navbar">
@@ -23,15 +29,52 @@ function ParkMain() {
           <NavLink to="directions">Directions</NavLink>
         </nav>
         <nav className="media_q_secondary_navlinks">
-          <button className="nav_menu_btn">
+          <button className="nav_menu_btn" onClick={menuToggleFunc}>
             Menu
             <img
-              src={menuIconGold}
+              src={menuIcon2Gold}
               alt=""
               height={18}
-              style={{ marginLeft: "5px" }}
+              style={{ marginLeft: "10px" }}
             />
           </button>
+          <ul className={!menuToggle ? "menu_hide" : "menu_show"}>
+            <li onClick={menuToggleFunc}>
+              <NavLink to="." end>
+                Park
+              </NavLink>
+            </li>
+            <li onClick={menuToggleFunc}>
+              <NavLink to="places">Places</NavLink>
+            </li>
+            <li onClick={menuToggleFunc}>
+              <NavLink to="news">News</NavLink>
+            </li>
+            <li onClick={menuToggleFunc}>
+              <NavLink to="thingstodo">Things to do</NavLink>
+            </li>
+            <li onClick={menuToggleFunc}>
+              <NavLink to="people">People</NavLink>
+            </li>
+            <li onClick={menuToggleFunc}>
+              <NavLink to="videos">Videos</NavLink>
+            </li>
+            <li onClick={menuToggleFunc}>
+              <NavLink to="campgrounds">Campgrounds</NavLink>
+            </li>
+            <li onClick={menuToggleFunc}>
+              <NavLink to="visitorcenters">Visitor Centers</NavLink>
+            </li>
+            <li onClick={menuToggleFunc}>
+              <NavLink to="webcams">Webcams</NavLink>
+            </li>
+            <li onClick={menuToggleFunc}>
+              <NavLink to="amenities">Amenities</NavLink>
+            </li>
+            <li onClick={menuToggleFunc}>
+              <NavLink to="directions">Directions</NavLink>
+            </li>
+          </ul>
         </nav>
       </div>
       <Outlet />

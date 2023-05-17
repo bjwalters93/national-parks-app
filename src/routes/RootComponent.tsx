@@ -1,6 +1,8 @@
 import React from "react";
 import "./RootComponent.css";
 import logo from "../images/mountain-icon_green.png";
+import homeIconWhite from "../images/homeIconWhite.png";
+import findIconWhite from "../images/findIconWhite.png";
 import { Outlet, NavLink, ScrollRestoration } from "react-router-dom";
 
 function RootComponent() {
@@ -15,9 +17,25 @@ function RootComponent() {
           />
           All Parks
         </NavLink>
+        <NavLink to={"/"} className="Logo_mq">
+          <img
+            className="logo_img_mq"
+            src={logo}
+            alt="mountain icon"
+            // style={{ width: "50px", marginRight: "10px" }}
+          />
+        </NavLink>
         <nav className="NavLinks">
           <NavLink to={"/"}>Home</NavLink>
           <NavLink to={`find_park`}>Find Park</NavLink>
+        </nav>
+        <nav className="NavLinks_mq">
+          <NavLink to={"/"}>
+            <img src={homeIconWhite} alt="home icon" className="main_icons" />
+          </NavLink>
+          <NavLink to={`find_park`}>
+            <img src={findIconWhite} alt="home icon" className="main_icons" />
+          </NavLink>
         </nav>
       </div>
       <Outlet />

@@ -16,6 +16,7 @@
   align-items: center;
   justify-content: space-between;
   z-index: 1;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .Logo {
@@ -44,5 +45,41 @@ ul {
 }
 
 .NavLinks a.active {
-  border-bottom: 2px solid rgb(255, 211, 66);
+  border-bottom: 2px solid #ff9428;
+}
+
+/* MEDIA QUERY CLASSES */
+
+.Logo_mq {
+  display: none;
+}
+
+.logo_img_mq {
+  width: 50px;
+  margin: 0 10px 0 0;
+}
+
+.NavLinks_mq {
+  display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .NavBar {
+    padding: 20px;
+  }
+  .NavLinks {
+    display: none;
+  }
+  .NavLinks_mq {
+    display: initial;
+  }
+  .main_icons {
+    height: 30px;
+  }
+  .Logo {
+    display: none;
+  }
+  .Logo_mq {
+    display: initial;
+  }
 }
