@@ -28,7 +28,7 @@ function ParkMain() {
           <NavLink to="amenities">Amenities</NavLink>
           <NavLink to="directions">Directions</NavLink>
         </nav>
-        <nav className="media_q_secondary_navlinks">
+        <nav className="secondary_navlinks_mq">
           <button className="nav_menu_btn" onClick={menuToggleFunc}>
             Menu
             <img

@@ -31,10 +31,10 @@ function RootComponent() {
         </nav>
         <nav className="NavLinks_mq">
           <NavLink to={"/"}>
-            <img src={homeIconWhite} alt="home icon" className="main_icons" />
+            <img src={homeIconWhite} alt="home icon" />
           </NavLink>
           <NavLink to={`find_park`}>
-            <img src={findIconWhite} alt="home icon" className="main_icons" />
+            <img src={findIconWhite} alt="home icon" />
           </NavLink>
         </nav>
       </div>

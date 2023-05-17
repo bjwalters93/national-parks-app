@@ -1,7 +1,5 @@
 .Root {
   margin: 0;
-  /* width: 100%; */
-  /* background-color: rgb(255, 248, 148); */
 }
 
 .NavBar {
@@ -36,7 +34,7 @@ ul {
 }
 
 .NavLinks a {
-  margin: 0 20px;
+  margin: 0 0 0 20px;
   color: white;
   text-decoration: none;
   font-family: "Kanit", sans-serif;
@@ -54,11 +52,6 @@ ul {
   display: none;
 }
 
-.logo_img_mq {
-  width: 50px;
-  margin: 0 10px 0 0;
-}
-
 .NavLinks_mq {
   display: none;
 }
@@ -70,11 +63,20 @@ ul {
   .NavLinks {
     display: none;
   }
+  .logo_img_mq {
+    width: 40px;
+  }
   .NavLinks_mq {
     display: initial;
   }
-  .main_icons {
-    height: 30px;
+  .NavLinks_mq img {
+    height: 26px;
+  }
+  .NavLinks_mq a {
+    margin: 0 0 0 20px;
+  }
+  .NavLinks_mq a.active {
+    border-bottom: 2px solid #ff9428;
   }
   .Logo {
     display: none;
