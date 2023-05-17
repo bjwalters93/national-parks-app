@@ -19,3 +19,9 @@
   font-family: "Kanit", sans-serif;
   font-size: 20px;
 }
+
+@media only screen and (max-width: 600px) {
+  .IndexHome {
+    margin: 94px auto 0;
+  }
+}

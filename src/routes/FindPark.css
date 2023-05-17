@@ -50,18 +50,21 @@
 }
 
 .li_find_park {
-  padding: 0;
   display: flex;
   align-items: flex-start;
   padding: 20px 0;
 }
 
 .li_find_park p {
-  margin: 10px 0 0 0;
+  margin: 0 0 0 0;
 }
 
 .li_find_park span {
   font-weight: 600;
+}
+
+.lazy_load_container {
+  margin: 0 50px 0 0;
 }
 
 .li_find_park_image {
@@ -81,4 +84,35 @@
 .li_designation {
   margin: 0;
   font-weight: 600;
+}
+
+@media only screen and (max-width: 600px) {
+  .FindPark {
+    margin: 94px auto 0;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .li_find_park {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 10px 0;
+  }
+  .li_find_park_image {
+    display: block;
+    width: 75px;
+    height: 75px;
+    object-fit: cover;
+    border-radius: 0;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+    border: none;
+  }
+  .lazy_load_container {
+    border: 2px solid black;
+    margin: 10px 20px 10px 0;
+    float: left;
+    box-sizing: border-box;
+  }
 }
