@@ -30,7 +30,7 @@ function ParkMain() {
         </nav>
         <nav className="secondary_navlinks_mq">
           <button className="nav_menu_btn" onClick={menuToggleFunc}>
-            Menu
+            <span>Menu</span>
             <img
               src={menuIcon2Gold}
               alt=""
