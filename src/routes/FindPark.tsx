@@ -41,63 +41,21 @@ function FindPark() {
   const FindPark_LD = useLoaderData() as parkListData;
   console.log(FindPark_LD);
   let parkArr: React.ReactElement[] = [];
-  //   if (FindPark_LD !== null) {
-  //     parkArr = FindPark_LD.parkList.map((park) => {
-  //       return (
-  //         <li className="li_find_park" key={park.parkCode}>
-  //           <div className="lazy_load_container">
-  //             <LazyLoad height={125} width={125} threshold={0.1}>
-  //               <img
-  //                 src={park.images[0].url}
-  //                 alt={park.images[0].altText}
-  //                 className="li_find_park_image"
-  //                 onError={imageError}
-  //               />
-  //             </LazyLoad>
-  //           </div>
-  //           <div>
-  //             <h3 className="li_titles">
-  //               <Link
-  //                 className="park_links"
-  //                 to={"/park/" + FindPark_LD.stateCode + "/" + park.parkCode}
-  //               >
-  //                 {park.fullName}
-  //               </Link>
-  //             </h3>
-  //             <h4 className="li_designation">{park.designation}</h4>
-  //             <p>
-  //               <span>States:</span>{" "}
-  //               {park.states
-  //                 .split(",")
-  //                 .map((el) => {
-  //                   let state = stateCodes.find(({ code }) => code === el) as {
-  //                     name: string;
-  //                   };
-  //                   return state.name;
-  //                 })
-  //                 .join(", ")}
-  //             </p>
-  //             <p>{park.description}</p>
-  //           </div>
-  //         </li>
-  //       );
-  //     });
-  //   }
   if (FindPark_LD !== null) {
     parkArr = FindPark_LD.parkList.map((park) => {
       return (
         <li className="li_find_park" key={park.parkCode}>
+          <div className="lazy_load_container">
+            <LazyLoad height={125} width={125} threshold={0.1}>
+              <img
+                src={park.images[0].url}
+                alt={park.images[0].altText}
+                className="li_find_park_image"
+                onError={imageError}
+              />
+            </LazyLoad>
+          </div>
           <div>
-            <div className="lazy_load_container">
-              <LazyLoad height={75} width={75} threshold={0.1}>
-                <img
-                  src={park.images[0].url}
-                  alt={park.images[0].altText}
-                  className="li_find_park_image"
-                  onError={imageError}
-                />
-              </LazyLoad>
-            </div>
             <h3 className="li_titles">
               <Link
                 className="park_links"
@@ -119,7 +77,7 @@ function FindPark() {
                 })
                 .join(", ")}
             </p>
-            <p>{park.description}</p>
+            <p className="park_description">{park.description}</p>
           </div>
         </li>
       );
@@ -129,7 +87,7 @@ function FindPark() {
     <div className="FindPark">
       <h1>Find your park.</h1>
       <h2>Select a State</h2>
-      <Form method="get" action="/find_park">
+      <Form className="find_park_form" method="get" action="/find_park">
         <select
           id="state"
           name="state"

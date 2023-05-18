@@ -3,7 +3,7 @@
   max-width: 1000px;
   margin: 120px auto 0;
   font-family: "Kanit", sans-serif;
-  padding: 0 40px;
+  padding: 0 60px;
 }
 
 .submit_state_btn {
@@ -86,6 +86,24 @@
   font-weight: 600;
 }
 
+@media only screen and (max-width: 419px) {
+  .find_park_form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .submit_state_btn {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .park_description {
+    display: none;
+  }
+}
+
 @media only screen and (max-width: 600px) {
   .FindPark {
     margin: 94px auto 0;
@@ -101,18 +119,9 @@
     padding: 10px 0;
   }
   .li_find_park_image {
-    display: block;
-    width: 75px;
-    height: 75px;
-    object-fit: cover;
-    border-radius: 0;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
-    border: none;
   }
   .lazy_load_container {
-    border: 2px solid black;
-    margin: 10px 20px 10px 0;
-    float: left;
-    box-sizing: border-box;
+    margin: 0 0 10px 0;
   }
 }
