@@ -1,19 +1,13 @@
 import React from "react";
 import "./Park.css";
 import { Params, useLoaderData, Link, useParams } from "react-router-dom";
-import Lightbox from "yet-another-react-lightbox";
-import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
-// import Inline from "yet-another-react-lightbox/plugins/inline";
-import Captions from "yet-another-react-lightbox/plugins/captions";
-import Counter from "yet-another-react-lightbox/plugins/counter";
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import "yet-another-react-lightbox/plugins/captions.css";
 import "yet-another-react-lightbox/plugins/counter.css";
 import arrowIcon from "../images/arrowIcon.png";
-import LazyLoad from "react-lazy-load";
-import ImageError from "../images/ImageError.png";
 import { stateCodes } from "../utilityData";
+import ImageGalleryContainer from "../secondary_components/ImageGalleryContainer";
 
 // -----------------------------------------------------------------------
 // -----------------------------------------------------------------------
@@ -89,15 +83,10 @@ export async function loadPark({
   return { park: parkData.data, images: imageData.data };
 }
 
-function imageError(event: React.SyntheticEvent<HTMLImageElement, Event>) {
-  event.currentTarget.src = ImageError;
-}
-
 function Park() {
   const Park_LD = useLoaderData() as parkData;
   const Park_params = useParams();
   console.log(Park_LD);
-  const [index, setIndex] = React.useState(-1);
 
   const imagesArr1: {
     src: string;
@@ -145,31 +134,7 @@ function Park() {
       <p>{Park_LD.park[0].description}</p>
       <h2 style={{ marginBottom: "0" }}>Photo Album</h2>
       <p style={{ marginTop: "0" }}>{combinedImagesArr.length} Images</p>
-      <div className="image_gallery_container">
-        {combinedImagesArr.map((image, index) => {
-          return (
-            <LazyLoad key={index} height={220} width={220} threshold={0.1}>
-              <img
-                className="gallery_images"
-                src={image.src}
-                alt={image.alt}
-                onClick={() => {
-                  setIndex(index);
-                }}
-                onError={imageError}
-              />
-            </LazyLoad>
-          );
-        })}
-        <Lightbox
-          slides={[...combinedImagesArr]}
-          open={index >= 0}
-          index={index}
-          close={() => setIndex(-1)}
-          plugins={[Thumbnails, Counter, Captions]}
-          counter={{ style: { top: 24 } }}
-        />
-      </div>
+      <ImageGalleryContainer combinedImagesArr={combinedImagesArr} />
       <h2>Park Information</h2>
       <p className="left_margin_park_info">
         <span className="span_bold_1">Designation:</span>{" "}
