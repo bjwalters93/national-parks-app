@@ -10,6 +10,7 @@ import { stateCodes } from "../utilityData";
 import ImageGallery from "../secondary_components/ImageGallery";
 import ImageGalleryMQ from "../secondary_components/ImageGalleryMQ";
 import { viewportContext } from "./RootComponent";
+import scrollIconsResize from "../images/scrollIconsResize.png";
 
 // -----------------------------------------------------------------------
 // -----------------------------------------------------------------------
@@ -137,8 +138,23 @@ function Park() {
       <h1 className="park__title">{Park_LD.park[0].fullName}</h1>
       <p>{Park_LD.park[0].description}</p>
       <h2 style={{ marginBottom: "0" }}>Photo Album</h2>
-      <p style={{ marginTop: "0" }}>
-        {combinedImagesArr.length} Images (scroll)
+      <p
+        style={{
+          marginTop: "0",
+          marginLeft: "10px",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <img
+          src={scrollIconsResize}
+          alt="scroll icons"
+          style={{
+            height: "30px",
+            marginRight: "5px",
+          }}
+        />
+        {combinedImagesArr.length} Images (scroll){" "}
       </p>
       {viewportWidth.width > breakpoint && (
         <ImageGallery combinedImagesArr={combinedImagesArr} />

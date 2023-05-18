@@ -29,8 +29,9 @@ function RootComponent() {
               className="logo_img_mq"
               src={logo}
               alt="mountain icon"
-              // style={{ width: "50px", marginRight: "10px" }}
+              //   style={{ width: "50px", marginRight: "10px" }}
             />
+            All Parks
           </NavLink>
           <nav className="NavLinks">
             <NavLink to={"/"}>Home</NavLink>

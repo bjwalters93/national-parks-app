@@ -13,7 +13,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  z-index: 1;
+  z-index: 0;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
@@ -57,31 +57,46 @@ ul {
 }
 
 @media only screen and (max-width: 600px) {
-  .NavBar {
-    padding: 10px;
+  .Logo {
+    display: none;
   }
   .NavLinks {
     display: none;
   }
+  .Logo_mq {
+    display: initial;
+  }
+  .NavBar {
+    box-sizing: border-box;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+  }
   .logo_img_mq {
-    width: 40px;
+    width: 30px;
+    margin-right: 5px;
+  }
+  .Logo_mq {
+    font-family: "Sigmar", cursive;
+    font-size: 20px;
+    color: white;
+    color: #2cff28;
+    color: #ff9428;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .NavLinks_mq {
     display: initial;
   }
   .NavLinks_mq img {
-    height: 26px;
+    height: 20px;
   }
   .NavLinks_mq a {
     margin: 0 0 0 20px;
   }
   .NavLinks_mq a.active {
     border-bottom: 2px solid #ff9428;
-  }
-  .Logo {
-    display: none;
-  }
-  .Logo_mq {
-    display: initial;
   }
 }
