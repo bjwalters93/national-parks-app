@@ -6,11 +6,7 @@ import Mountain4 from "../images/Mountain4.png";
 function IndexHome() {
   return (
     <div className="IndexHome">
-      <img
-        src={Mountain4}
-        alt="mountain4"
-        style={{ width: "400px", float: "right" }}
-      />
+      <img src={Mountain4} alt="mountain4" className="index_home_mountain4" />
       <h1 className="title">What is All Parks ?</h1>
       <p className="p_IndexHome">
         All Parks is an app that allows you to find any{" "}

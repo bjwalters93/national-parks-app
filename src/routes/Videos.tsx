@@ -6,7 +6,6 @@ import Video from "yet-another-react-lightbox/plugins/video";
 import Inline from "yet-another-react-lightbox/plugins/inline";
 import Counter from "yet-another-react-lightbox/plugins/counter";
 import Captions from "yet-another-react-lightbox/plugins/captions";
-import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/counter.css";
 import "yet-another-react-lightbox/plugins/captions.css";
@@ -91,7 +90,7 @@ function Videos() {
       >
         <div style={{ width: "75%" }} ref={inputRef}>
           <Lightbox
-            plugins={[Video, Inline, Counter, Captions, Fullscreen]}
+            plugins={[Video, Inline, Counter, Captions]}
             slides={[...videoArr]}
             counter={{ style: { top: 24 } }}
             inline={{
@@ -107,7 +106,6 @@ function Videos() {
           style={{
             width: "25%",
             overflowY: "scroll",
-            overflowX: "clip",
             padding: "0 20px",
             height:
               inputHeight === undefined

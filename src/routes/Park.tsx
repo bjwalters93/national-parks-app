@@ -6,9 +6,6 @@ import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 // import Inline from "yet-another-react-lightbox/plugins/inline";
 import Captions from "yet-another-react-lightbox/plugins/captions";
 import Counter from "yet-another-react-lightbox/plugins/counter";
-import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
-import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
-import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import "yet-another-react-lightbox/plugins/captions.css";
@@ -169,7 +166,7 @@ function Park() {
           open={index >= 0}
           index={index}
           close={() => setIndex(-1)}
-          plugins={[Fullscreen, Slideshow, Thumbnails, Zoom, Counter, Captions]}
+          plugins={[Thumbnails, Counter, Captions]}
           counter={{ style: { top: 24 } }}
         />
       </div>
