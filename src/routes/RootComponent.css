@@ -58,7 +58,7 @@ ul {
 
 @media only screen and (max-width: 600px) {
   .NavBar {
-    padding: 20px;
+    padding: 10px;
   }
   .NavLinks {
     display: none;
