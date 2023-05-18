@@ -1909,6 +1909,7 @@ export const stateCodes: { name: string; code: string }[] = [
     name: "Connecticut",
     code: "CT",
   },
+  { name: "District of Columbia", code: "DC" },
   {
     name: "Delaware",
     code: "DE",
