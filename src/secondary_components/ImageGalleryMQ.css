@@ -1,0 +1,34 @@
+.image_gallery_container_mq {
+  display: flex;
+  flex-wrap: wrap;
+  width: auto;
+  height: 200px;
+  overflow-y: scroll;
+  justify-content: center;
+}
+
+.gallery_images_mq {
+  box-sizing: border-box;
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  display: block;
+  /* box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5); */
+  cursor: pointer;
+  /* margin: 5px; */
+  /* border-radius: 20px; */
+}
+
+.LazyLoad {
+  opacity: 0;
+  transition: all 1s ease-in-out;
+}
+
+.is-visible {
+  opacity: 1;
+}
+
+.yarl__container {
+  font-family: "Kanit", sans-serif;
+}

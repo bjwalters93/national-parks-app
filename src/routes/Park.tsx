@@ -7,7 +7,9 @@ import "yet-another-react-lightbox/plugins/captions.css";
 import "yet-another-react-lightbox/plugins/counter.css";
 import arrowIcon from "../images/arrowIcon.png";
 import { stateCodes } from "../utilityData";
-import ImageGalleryContainer from "../secondary_components/ImageGalleryContainer";
+import ImageGallery from "../secondary_components/ImageGallery";
+import ImageGalleryMQ from "../secondary_components/ImageGalleryMQ";
+import { viewportContext } from "./RootComponent";
 
 // -----------------------------------------------------------------------
 // -----------------------------------------------------------------------
@@ -86,6 +88,8 @@ export async function loadPark({
 function Park() {
   const Park_LD = useLoaderData() as parkData;
   const Park_params = useParams();
+  const viewportWidth = React.useContext(viewportContext) as { width: number };
+  const breakpoint = 600;
   console.log(Park_LD);
 
   const imagesArr1: {
@@ -133,8 +137,15 @@ function Park() {
       <h1 className="park__title">{Park_LD.park[0].fullName}</h1>
       <p>{Park_LD.park[0].description}</p>
       <h2 style={{ marginBottom: "0" }}>Photo Album</h2>
-      <p style={{ marginTop: "0" }}>{combinedImagesArr.length} Images</p>
-      <ImageGalleryContainer combinedImagesArr={combinedImagesArr} />
+      <p style={{ marginTop: "0" }}>
+        {combinedImagesArr.length} Images (scroll)
+      </p>
+      {viewportWidth.width > breakpoint && (
+        <ImageGallery combinedImagesArr={combinedImagesArr} />
+      )}
+      {viewportWidth.width < breakpoint && (
+        <ImageGalleryMQ combinedImagesArr={combinedImagesArr} />
+      )}
       <h2>Park Information</h2>
       <p className="left_margin_park_info">
         <span className="span_bold_1">Designation:</span>{" "}
