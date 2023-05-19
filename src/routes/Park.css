@@ -24,5 +24,15 @@
 }
 
 .park__title {
-  margin-top: 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  line-height: 1;
+  font-size: 26px;
+}
+
+.Park h2 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  line-height: 1;
+  font-size: 20px;
 }

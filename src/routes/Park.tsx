@@ -142,7 +142,7 @@ function Park() {
         {combinedImagesArr.length} Images (scroll) <br />
         Click to zoom
       </p>
-      {viewportWidth.width > breakpoint && (
+      {viewportWidth.width >= breakpoint && (
         <ImageGallery combinedImagesArr={combinedImagesArr} />
       )}
       {viewportWidth.width < breakpoint && (
@@ -193,7 +193,7 @@ function Park() {
         )}
       </div>
       <div className="left_margin_park_info">
-        <p style={{ marginBottom: "0px" }}>
+        <p>
           <span className="span_bold_1">Operating Hours:</span>{" "}
           {Park_LD.park[0].operatingHours.length > 0 ? null : "N/A"}
         </p>

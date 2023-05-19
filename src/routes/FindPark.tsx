@@ -85,8 +85,8 @@ function FindPark() {
   }
   return (
     <div className="FindPark">
-      <h1>Find your park.</h1>
-      <h2>Select a State</h2>
+      <h1 className="find_park_title">Find your park.</h1>
+      <h2 className="find_park_h2">Select a State</h2>
       <Form className="find_park_form" method="get" action="/find_park">
         <select
           id="state"
