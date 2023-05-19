@@ -45,12 +45,17 @@ function ImageGalleryMQ({ combinedImagesArr }: componentProps) {
         );
       })}
       <Lightbox
+        styles={{
+          container: { fontFamily: "'Kanit', sans-serif" },
+          captionsTitle: { fontSize: "14px" },
+          captionsDescription: { fontSize: "12px" },
+        }}
         slides={[...combinedImagesArr]}
         open={index >= 0}
         index={index}
         close={() => setIndex(-1)}
         plugins={[Counter, Captions, Zoom]}
-        counter={{ style: { top: 24 } }}
+        counter={{ style: { top: 16, fontSize: "12px" } }}
         zoom={{ maxZoomPixelRatio: 10 }}
         animation={{ zoom: 200 }}
       />
