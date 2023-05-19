@@ -10,7 +10,6 @@ import "yet-another-react-lightbox/plugins/captions.css";
 import "yet-another-react-lightbox/plugins/counter.css";
 import LazyLoad from "react-lazy-load";
 import ImageError from "../images/ImageError.png";
-import styles from "yet-another-react-lightbox/styles.css";
 
 type componentProps = {
   combinedImagesArr: {
