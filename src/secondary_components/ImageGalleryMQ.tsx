@@ -1,8 +1,13 @@
 import * as React from "react";
 import "./ImageGalleryMQ.css";
+import Lightbox from "yet-another-react-lightbox";
 import Captions from "yet-another-react-lightbox/plugins/captions";
 import Counter from "yet-another-react-lightbox/plugins/counter";
-import Lightbox from "yet-another-react-lightbox";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import "yet-another-react-lightbox/styles.css";
+import "yet-another-react-lightbox/plugins/thumbnails.css";
+import "yet-another-react-lightbox/plugins/captions.css";
+import "yet-another-react-lightbox/plugins/counter.css";
 import LazyLoad from "react-lazy-load";
 import ImageError from "../images/ImageError.png";
 
@@ -44,7 +49,7 @@ function ImageGalleryMQ({ combinedImagesArr }: componentProps) {
         open={index >= 0}
         index={index}
         close={() => setIndex(-1)}
-        plugins={[Counter, Captions]}
+        plugins={[Counter, Captions, Zoom]}
         counter={{ style: { top: 24 } }}
       />
     </div>
