@@ -51,6 +51,8 @@ function ImageGalleryMQ({ combinedImagesArr }: componentProps) {
         close={() => setIndex(-1)}
         plugins={[Counter, Captions, Zoom]}
         counter={{ style: { top: 24 } }}
+        zoom={{ maxZoomPixelRatio: 10 }}
+        animation={{ zoom: 200 }}
       />
     </div>
   );

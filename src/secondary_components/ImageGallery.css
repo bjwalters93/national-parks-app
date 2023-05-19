@@ -30,3 +30,11 @@
 .yarl__container {
   font-family: "Kanit", sans-serif;
 }
+
+.yarl__slide_title {
+  font-size: 14px;
+}
+
+.yarl__slide_description {
+  font-size: 12px;
+}

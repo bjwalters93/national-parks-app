@@ -1,10 +1,6 @@
 import React from "react";
 import "./Park.css";
 import { Params, useLoaderData, Link, useParams } from "react-router-dom";
-import "yet-another-react-lightbox/styles.css";
-import "yet-another-react-lightbox/plugins/thumbnails.css";
-import "yet-another-react-lightbox/plugins/captions.css";
-import "yet-another-react-lightbox/plugins/counter.css";
 import arrowIcon from "../images/arrowIcon.png";
 import { stateCodes } from "../utilityData";
 import ImageGallery from "../secondary_components/ImageGallery";
@@ -316,25 +312,6 @@ function Park() {
           );
         })}
       </div>
-      {/* <div
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          width: "100vw",
-          height: "100vh",
-          display: "flex",
-          justifyContent: "center",
-          zIndex: "5",
-          backgroundColor: "black",
-        }}
-      >
-        <img
-          src="https://www.nps.gov/common/uploads/structured_data/C4E8415A-08E5-5976-833F494FFCA3FFE6.jpg"
-          alt="volcano"
-          style={{ width: "80%", objectFit: "contain" }}
-        />
-      </div> */}
     </div>
   );
 }
