@@ -4,116 +4,112 @@
 
 .secondary_navbar {
   padding: 10px 20px;
-  background-color: rgb(73, 46, 0);
-  background-color: rgb(40, 25, 0);
+  background-color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   position: fixed;
   top: 110px;
   width: 100%;
-  z-index: 1;
+  z-index: 2;
   box-sizing: border-box;
   /* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); */
-  border-top: 0.25px solid rgb(255, 211, 66);
+  /* border-bottom: 2px solid black; */
 }
 
 .secondary_navlinks a {
   margin: 0 20px;
-  color: rgb(255, 211, 66);
+  color: black;
   text-decoration: none;
   font-family: "Kanit", sans-serif;
-  font-weight: 400;
+  font-weight: 600;
   font-size: 18px;
 }
 
 .secondary_navlinks a.active {
-  color: white;
-  border-bottom: 1px solid rgb(255, 211, 66);
+  color: black;
+  border-bottom: 2px solid black;
 }
 
 /* MEDIA QUERY CLASSES */
 
-.secondary_navlinks_mq {
+.secondary_nav_btn_cont_mq {
+  display: none;
+}
+
+.menu_show {
+  display: none;
+}
+
+.menu_hide {
   display: none;
 }
 
 @media only screen and (max-width: 1351px) {
-  .menu_hide {
+  .secondary_navlinks {
     display: none;
+  }
+  .secondary_navbar {
+    justify-content: flex-end;
   }
   .menu_show {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    min-width: 200px;
-    position: absolute;
+    width: 200px;
+    position: fixed;
+    top: 157px;
     right: 0;
-    background-color: rgb(40, 25, 0);
-    margin: 10px 0 0 0;
+    z-index: 1;
+    background-color: white;
+    /* margin: 10px 0 0 0; */
     padding: 20px;
-    /* box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.5); */
+    box-shadow: -3px 3px 5px rgba(0, 0, 0, 0.3);
   }
-  .secondary_navlinks {
-    display: none;
-  }
-  .secondary_navlinks_mq {
+  .secondary_nav_btn_cont_mq {
     display: initial;
-  }
-  .secondary_navbar {
-    justify-content: flex-end;
   }
   .menu_btn_icon {
     height: 18px;
     margin-left: 10px;
   }
+
   .nav_menu_btn {
     display: flex;
     align-items: center;
     cursor: pointer;
     border: none;
     padding: 0;
-    background-color: rgb(40, 25, 0);
-    color: #ffd342;
+    background-color: white;
+    color: black;
     text-decoration: none;
     font-family: "Kanit", sans-serif;
-    font-weight: 400;
+    font-weight: 600;
     font-size: 18px;
   }
-  .secondary_navlinks_mq a {
-    margin: 0 20px;
-    color: rgb(255, 211, 66);
+  .menu_show a {
+    color: black;
     text-decoration: none;
     font-family: "Kanit", sans-serif;
-    font-weight: 400;
+    font-weight: 600;
     font-size: 18px;
   }
 
-  .secondary_navlinks_mq a.active {
-    color: white;
-    border-bottom: 1px solid rgb(255, 211, 66);
+  .menu_show a.active {
+    color: black;
+    border-bottom: 1px solid black;
   }
 }
 
 @media only screen and (max-width: 600px) {
   .ParkMain {
-    margin-top: 94px;
+    margin-top: 90px;
   }
   .secondary_navbar {
     top: 53px;
     padding: 5px 20px;
   }
-  .nav_menu_btn {
-    font-size: 14px;
-  }
-  .secondary_navlinks_mq a {
-    font-size: 14px;
-  }
-  .menu_btn_icon {
-    height: 14px;
-    margin-left: 10px;
-  }
   .menu_show {
-    margin: 5px 0 0 0;
+    top: 90px;
   }
 }
