@@ -140,6 +140,7 @@ function Park() {
           marginLeft: "10px",
           display: "flex",
           alignItems: "center",
+          fontSize: "14px",
         }}
       >
         <img
@@ -150,7 +151,8 @@ function Park() {
             marginRight: "5px",
           }}
         />
-        {combinedImagesArr.length} Images (scroll){" "}
+        {combinedImagesArr.length} Images (scroll) <br />
+        Click to zoom
       </p>
       {viewportWidth.width > breakpoint && (
         <ImageGallery combinedImagesArr={combinedImagesArr} />

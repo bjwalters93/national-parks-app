@@ -31,12 +31,7 @@ function ParkMain() {
         <nav className="secondary_navlinks_mq">
           <button className="nav_menu_btn" onClick={menuToggleFunc}>
             <span style={{ wordBreak: "normal" }}>Menu</span>
-            <img
-              src={menuIcon2Gold}
-              alt=""
-              height={18}
-              style={{ marginLeft: "10px" }}
-            />
+            <img className="menu_btn_icon" src={menuIcon2Gold} alt="" />
           </button>
           <ul className={!menuToggle ? "menu_hide" : "menu_show"}>
             <li onClick={menuToggleFunc}>
