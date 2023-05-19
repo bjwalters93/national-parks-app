@@ -31,6 +31,33 @@
   border-bottom: 2px solid black;
 }
 
+.backlink__container_nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  /* margin: 10px 0 0 0; */
+}
+
+.backlink__container_body {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  /* margin: 10px 0 0 0; */
+}
+
+.back__link {
+  color: black;
+}
+
+.back__text {
+  font-family: "Kanit", sans-serif;
+  margin-left: 10px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
 /* MEDIA QUERY CLASSES */
 
 .secondary_nav_btn_cont_mq {
@@ -68,6 +95,10 @@
   }
   .secondary_nav_btn_cont_mq {
     display: initial;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
   }
   .menu_btn_icon {
     height: 18px;

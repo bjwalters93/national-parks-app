@@ -1,7 +1,6 @@
 import React from "react";
 import "./Park.css";
-import { Params, useLoaderData, Link, useParams } from "react-router-dom";
-import arrowIcon from "../images/arrowIcon.png";
+import { Params, useLoaderData } from "react-router-dom";
 import { stateCodes } from "../utilityData";
 import ImageGallery from "../secondary_components/ImageGallery";
 import ImageGalleryMQ from "../secondary_components/ImageGalleryMQ";
@@ -84,7 +83,6 @@ export async function loadPark({
 
 function Park() {
   const Park_LD = useLoaderData() as parkData;
-  const Park_params = useParams();
   const viewportWidth = React.useContext(viewportContext) as { width: number };
   const breakpoint = 600;
   console.log(Park_LD);
@@ -121,16 +119,6 @@ function Park() {
 
   return (
     <div className="Park">
-      <div className="backlink__container">
-        <Link
-          to={`/find_park?state=${Park_params.stateCode}`}
-          className="back__link"
-        >
-          <img src={arrowIcon} alt="back arrow" height="10px" />
-          <span className="back__text">Back to Find Park</span>
-        </Link>
-      </div>
-
       <h1 className="park__title">{Park_LD.park[0].fullName}</h1>
       <p>{Park_LD.park[0].description}</p>
       <h2 style={{ marginBottom: "0" }}>Photo Album</h2>

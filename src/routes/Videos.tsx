@@ -1,6 +1,6 @@
 import * as React from "react";
 import "./Videos.css";
-import { Params, useLoaderData, Link, useParams } from "react-router-dom";
+import { Params, useLoaderData } from "react-router-dom";
 import Lightbox, { Slide } from "yet-another-react-lightbox";
 import Video from "yet-another-react-lightbox/plugins/video";
 import Inline from "yet-another-react-lightbox/plugins/inline";
@@ -9,7 +9,6 @@ import Captions from "yet-another-react-lightbox/plugins/captions";
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/counter.css";
 import "yet-another-react-lightbox/plugins/captions.css";
-import arrowIcon from "../images/arrowIcon.png";
 
 type videoData = {
   title: string;
@@ -34,7 +33,6 @@ function Videos() {
   const [inputHeight, setInputHeight] = React.useState<number>();
   const inputRef = React.useRef<HTMLDivElement>(null);
   const Videos_LD = useLoaderData() as videoData;
-  const Videos_params = useParams();
   console.log("Videos_LD:", Videos_LD);
   const [index, setIndex] = React.useState(0);
   const videoArr: Slide[] = Videos_LD.map((video) => {
@@ -68,15 +66,6 @@ function Videos() {
 
   return (
     <div className="Videos">
-      <div className="backlink__container">
-        <Link
-          to={`/find_park?state=${Videos_params.stateCode}`}
-          className="back__link"
-        >
-          <img src={arrowIcon} alt="back arrow" height="10px" />
-          <span className="back__text">Back to Find Park</span>
-        </Link>
-      </div>
       <h1 style={{ marginBottom: "0", marginTop: "0" }}>Videos</h1>
       <p style={{ margin: "0 0 10px 0" }}>{videoArr.length} Videos</p>
       <div

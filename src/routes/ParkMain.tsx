@@ -1,10 +1,28 @@
 import * as React from "react";
-import { Outlet, NavLink } from "react-router-dom";
+import { Outlet, NavLink, Link, useParams } from "react-router-dom";
 import "./ParkMain.css";
 import menuIcon2Black from "../images/menuIcon2Black.png";
+import arrowIcon from "../images/arrowIcon.png";
+import { viewportContext } from "./RootComponent";
 
 function ParkMain() {
   const [menuToggle, setMenuToggle] = React.useState(false);
+  const Park_params = useParams();
+  const viewportWidth = React.useContext(viewportContext) as { width: number };
+  const breakpoint = 1351;
+
+  const ref = React.useRef<HTMLUListElement>(null);
+
+  React.useEffect(() => {
+    if (!ref.current) throw Error("ulRef is not assigned");
+    const handleClickOutside = (event: MouseEvent) => {
+      if (!ref?.current?.contains(event.target as Node)) {
+        setMenuToggle(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => window.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const menuToggleFunc = () => {
     setMenuToggle((prev) => !prev);
@@ -29,13 +47,33 @@ function ParkMain() {
           <NavLink to="directions">Directions</NavLink>
         </nav>
         <nav className="secondary_nav_btn_cont_mq">
+          <div className="backlink__container_nav">
+            <Link
+              to={`/find_park?state=${Park_params.stateCode}`}
+              className="back__link"
+            >
+              <img src={arrowIcon} alt="back arrow" height="10px" />
+              <span className="back__text">Find Park</span>
+            </Link>
+          </div>
           <button className="nav_menu_btn" onClick={menuToggleFunc}>
             <span style={{ wordBreak: "normal" }}>Menu</span>
             <img className="menu_btn_icon" src={menuIcon2Black} alt="" />
           </button>
         </nav>
       </div>
-      <ul className={!menuToggle ? "menu_hide" : "menu_show"}>
+      {viewportWidth.width > breakpoint && (
+        <div className="backlink__container_body">
+          <Link
+            to={`/find_park?state=${Park_params.stateCode}`}
+            className="back__link"
+          >
+            <img src={arrowIcon} alt="back arrow" height="10px" />
+            <span className="back__text">Find Park</span>
+          </Link>
+        </div>
+      )}
+      <ul className={!menuToggle ? "menu_hide" : "menu_show"} ref={ref}>
         <li onClick={menuToggleFunc}>
           <NavLink to="." end>
             Park
