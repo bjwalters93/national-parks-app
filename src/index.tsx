@@ -8,6 +8,7 @@ import Videos, { loadVideos } from "./routes/Videos";
 import Park, { loadPark } from "./routes/Park";
 import Directions, { loadDirections } from "./routes/Directions";
 import ParkMain from "./routes/ParkMain";
+import Places, { loadPlaces } from "./routes/Places";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -26,14 +27,14 @@ const router = createBrowserRouter([
         element: <ParkMain />,
         children: [
           { index: true, element: <Park />, loader: loadPark },
-          { path: "places", element: <h1>Places</h1> },
+          { path: "places", element: <Places />, loader: loadPlaces },
           { path: "news", element: <h1>News</h1> },
           { path: "thingstodo", element: <h1>Things to do</h1> },
           { path: "people", element: <h1>People</h1> },
           { path: "videos", element: <Videos />, loader: loadVideos },
           { path: "campgrounds", element: <h1>Campgrounds</h1> },
           { path: "visitorcenters", element: <h1>visitorcenters</h1> },
-          { path: "webcams", element: <h1>Webcams</h1> },
+          { path: "alerts", element: <h1>Alerts</h1> },
           {
             path: "amenities",
             element: <h1>Amenities ---- use /amenities/parksplaces</h1>,

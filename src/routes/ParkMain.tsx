@@ -15,8 +15,6 @@ function ParkMain() {
     setMenuToggle((prev) => !prev);
   };
 
-  console.log(menuToggle);
-
   return (
     <div className="ParkMain">
       <div className="secondary_navbar">
@@ -31,7 +29,7 @@ function ParkMain() {
           <NavLink to="videos">Videos</NavLink>
           <NavLink to="campgrounds">Campgrounds</NavLink>
           <NavLink to="visitorcenters">Visitor Centers</NavLink>
-          <NavLink to="webcams">Webcams</NavLink>
+          <NavLink to="alerts">Alerts</NavLink>
           <NavLink to="amenities">Amenities</NavLink>
           <NavLink to="directions">Directions</NavLink>
         </nav>
@@ -90,7 +88,7 @@ function ParkMain() {
           <NavLink to="visitorcenters">Visitor Centers</NavLink>
         </li>
         <li onClick={menuToggleFunc}>
-          <NavLink to="webcams">Webcams</NavLink>
+          <NavLink to="alerts">Alerts</NavLink>
         </li>
         <li onClick={menuToggleFunc}>
           <NavLink to="amenities">Amenities</NavLink>
