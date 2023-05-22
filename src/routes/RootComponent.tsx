@@ -49,7 +49,12 @@ function RootComponent() {
         <Outlet />
         <ScrollRestoration
           getKey={(location, matches) => {
-            return location.pathname;
+            const paths = ["/find_park"];
+            return paths.includes(location.pathname)
+              ? // home and notifications restore by pathname
+                location.pathname
+              : // everything else by location like the browser
+                location.key;
           }}
         />
       </div>

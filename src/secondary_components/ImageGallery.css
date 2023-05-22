@@ -17,12 +17,3 @@
   margin: 10px;
   border-radius: 20px;
 }
-
-.LazyLoad {
-  opacity: 0;
-  transition: all 1s ease-in-out;
-}
-
-.is-visible {
-  opacity: 1;
-}

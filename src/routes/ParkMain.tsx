@@ -11,22 +11,11 @@ function ParkMain() {
   const viewportWidth = React.useContext(viewportContext) as { width: number };
   const breakpoint = 1351;
 
-  const ref = React.useRef<HTMLUListElement>(null);
-
-  React.useEffect(() => {
-    if (!ref.current) throw Error("ulRef is not assigned");
-    const handleClickOutside = (event: MouseEvent) => {
-      if (!ref?.current?.contains(event.target as Node)) {
-        setMenuToggle(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => window.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
   const menuToggleFunc = () => {
     setMenuToggle((prev) => !prev);
   };
+
+  console.log(menuToggle);
 
   return (
     <div className="ParkMain">
@@ -73,7 +62,7 @@ function ParkMain() {
           </Link>
         </div>
       )}
-      <ul className={!menuToggle ? "menu_hide" : "menu_show"} ref={ref}>
+      <ul className={!menuToggle ? "menu_hide" : "menu_show"}>
         <li onClick={menuToggleFunc}>
           <NavLink to="." end>
             Park
