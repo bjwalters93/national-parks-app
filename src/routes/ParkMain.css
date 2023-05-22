@@ -60,7 +60,7 @@
 
 /* MEDIA QUERY CLASSES */
 
-.secondary_nav_btn_cont_mq {
+.secondary_navlinks_mq {
   display: none;
 }
 
@@ -93,7 +93,7 @@
     padding: 20px;
     box-shadow: -3px 3px 5px rgba(0, 0, 0, 0.2);
   }
-  .secondary_nav_btn_cont_mq {
+  .secondary_navlinks_mq {
     display: initial;
     display: flex;
     justify-content: space-between;

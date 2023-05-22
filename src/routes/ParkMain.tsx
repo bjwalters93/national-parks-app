@@ -35,7 +35,7 @@ function ParkMain() {
           <NavLink to="amenities">Amenities</NavLink>
           <NavLink to="directions">Directions</NavLink>
         </nav>
-        <nav className="secondary_nav_btn_cont_mq">
+        <nav className="secondary_navlinks_mq">
           <div className="backlink__container_nav">
             <Link
               to={`/find_park?state=${Park_params.stateCode}`}
