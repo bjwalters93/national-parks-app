@@ -10,6 +10,7 @@ import Directions, { loadDirections } from "./routes/Directions";
 import ParkMain from "./routes/ParkMain";
 import ThingsToDo, { loadThingsToDo } from "./routes/ThingsToDo";
 import Hiking, { loadHiking } from "./routes/Hiking";
+import NewsReleases, { loadNewsReleases } from "./routes/NewsReleases";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -34,7 +35,7 @@ const router = createBrowserRouter([
             loader: loadThingsToDo,
           },
           { path: "hiking", element: <Hiking />, loader: loadHiking },
-          { path: "news", element: <h1>News</h1> },
+          { path: "news", element: <NewsReleases />, loader: loadNewsReleases },
           { path: "people", element: <h1>People</h1> },
           { path: "videos", element: <Videos />, loader: loadVideos },
           { path: "campgrounds", element: <h1>Campgrounds</h1> },
