@@ -22,9 +22,8 @@ function ParkMain() {
           <NavLink to="." end>
             Park
           </NavLink>
-          <NavLink to="places">Places</NavLink>
-          <NavLink to="news">News</NavLink>
           <NavLink to="thingstodo">Things to do</NavLink>
+          <NavLink to="news">News</NavLink>
           <NavLink to="people">People</NavLink>
           <NavLink to="videos">Videos</NavLink>
           <NavLink to="campgrounds">Campgrounds</NavLink>
@@ -67,13 +66,10 @@ function ParkMain() {
           </NavLink>
         </li>
         <li onClick={menuToggleFunc}>
-          <NavLink to="places">Places</NavLink>
+          <NavLink to="thingstodo">Things to do</NavLink>
         </li>
         <li onClick={menuToggleFunc}>
           <NavLink to="news">News</NavLink>
-        </li>
-        <li onClick={menuToggleFunc}>
-          <NavLink to="thingstodo">Things to do</NavLink>
         </li>
         <li onClick={menuToggleFunc}>
           <NavLink to="people">People</NavLink>
