@@ -13,6 +13,7 @@
   width: 100%;
   z-index: 2;
   box-sizing: border-box;
+  background-color: rgb(255, 250, 182);
   /* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); */
   /* border-bottom: 2px solid black; */
 }
@@ -89,6 +90,7 @@
     right: 0;
     z-index: 1;
     background-color: white;
+    background-color: rgb(255, 250, 182);
     /* margin: 10px 0 0 0; */
     padding: 20px;
     box-shadow: -3px 3px 5px rgba(0, 0, 0, 0.2);
@@ -112,6 +114,7 @@
     border: none;
     padding: 0;
     background-color: white;
+    background-color: rgb(255, 250, 182);
     color: black;
     text-decoration: none;
     font-family: "Kanit", sans-serif;
