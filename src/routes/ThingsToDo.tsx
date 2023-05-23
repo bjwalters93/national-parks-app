@@ -1,24 +1,20 @@
 import * as React from "react";
 import "./ThingsToDo.css";
 import { Params, useLoaderData } from "react-router-dom";
-import { stateCodes } from "../utilityData";
 
 type thingsToDoData = {
   thingsToDo: {
+    accessibilityInformation: string;
+    feeDescription: string;
+    images: { url: string; title: string; altText: string }[];
+    petsDescription: string;
+    reservationDescription: string;
+    season: string[];
+    seasonDescription: string;
+    shortDescription: string;
     title: string;
-    amenities: [string];
-    bodyText: string;
-    images: { altText: string; title: string; url: string }[];
-    latitude: string;
-    longitude: string;
     id: string;
-    listingDescription: string;
-  }[];
-  park: {
-    fullName: string;
-    latitude: string;
-    longitude: string;
-    addresses: { city: string; stateCode: string }[];
+    duration: string;
   }[];
 };
 
@@ -31,77 +27,90 @@ export async function loadThingsToDo({
     `https://developer.nps.gov/api/v1/thingstodo?limit=1000&parkCode=${params.park}&api_key=9JlgO9YSfRlkWXenMR8S3X3uW9uW0cZBdycA46tm`
   );
   const thingsToDoData = await thingsToDoResponse.json();
-  const parkResponse = await fetch(
-    `https://developer.nps.gov/api/v1/parks?parkCode=${params.park}&api_key=9JlgO9YSfRlkWXenMR8S3X3uW9uW0cZBdycA46tm`
-  );
-  const parkData = await parkResponse.json();
   console.log(params.park);
-  return { thingsToDo: thingsToDoData.data, park: parkData.data };
+  return { thingsToDo: thingsToDoData.data };
 }
 
 function ThingsToDo() {
   const ThingsToDo_LD = useLoaderData() as thingsToDoData;
   console.log("ThingsToDo_LD:", ThingsToDo_LD);
-  console.log(
-    "latitude:",
-    ThingsToDo_LD.park[0].latitude,
-    "longitude:",
-    ThingsToDo_LD.park[0].longitude
-  );
   let thingsToDoArr: React.ReactElement[] = [];
   if (ThingsToDo_LD.thingsToDo.length > 0) {
     thingsToDoArr = ThingsToDo_LD.thingsToDo.map((thing) => {
       return (
         <div key={thing.id}>
           <h2>{thing.title}</h2>
+          <img
+            src={thing.images[0].url}
+            alt={thing.images[0].altText}
+            width={100}
+          />
+          <p>
+            {thing.shortDescription !== ""
+              ? `Description: ${thing.shortDescription.replace(
+                  /(<([^>]+)>)/gi,
+                  ""
+                )}`
+              : "Description: N/A"}
+          </p>
+          <p>
+            {thing.duration !== ""
+              ? `Duration: ${thing.duration.replace(/(<([^>]+)>)/gi, "")}`
+              : "Duration: N/A"}
+          </p>
+          <p>
+            {thing.season.length > 0
+              ? `Season: ${thing.season.join(", ")}`
+              : "Season: N/A"}
+          </p>
+          <p>
+            {thing.seasonDescription !== ""
+              ? `Season Description: ${thing.seasonDescription.replace(
+                  /(<([^>]+)>)/gi,
+                  ""
+                )}`
+              : "Season Description: N/A"}
+          </p>
+          <p>
+            {thing.feeDescription !== ""
+              ? `Fee: ${thing.feeDescription.replace(/(<([^>]+)>)/gi, "")}`
+              : "Fee: N/A"}
+          </p>
+          <p>
+            {thing.accessibilityInformation !== ""
+              ? `Accessibility: ${thing.accessibilityInformation.replace(
+                  /(<([^>]+)>)/gi,
+                  ""
+                )}`
+              : "Accessibility: N/A"}
+          </p>
+          <p>
+            {thing.reservationDescription !== ""
+              ? `Reservation: ${thing.reservationDescription.replace(
+                  /(<([^>]+)>)/gi,
+                  ""
+                )}`
+              : "Reservation: N/A"}
+          </p>
+          <p>
+            {thing.petsDescription !== ""
+              ? `Pets: ${thing.petsDescription.replace(/(<([^>]+)>)/gi, "")}`
+              : "Pets: N/A"}
+          </p>
           {/* <p>{thing.bodyText.replace(/(<([^>]+)>)/gi, "")}</p> */}
-          {/* <p>{thing.listingDescription}</p> */}
-          {/* <a
-            href={`https://www.google.com/maps/search/?api=1&query=${thing.latitude}+${thing.longitude}`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Directions
-          </a> */}
         </div>
       );
     });
   }
 
-  let state = ThingsToDo_LD.park[0].addresses[0].stateCode;
-  let city = ThingsToDo_LD.park[0].addresses[0].city;
-  let fullState = stateCodes.find(({ code }) => code === state);
-  console.log("fullState:", fullState);
-
-  //   .split(",")
-  //   .map((el) => {
-  //     let state = stateCodes.find(({ code }) => code === el) as {
-  //       name: string;
-  //     };
-  //     return state.name;
-  //   })
-  //   .join(", ");
-
   return (
     <div className="ThingsToDo">
-      <h1 className="thingstodo__title">
-        Things to do at {ThingsToDo_LD.park[0].fullName}
-      </h1>
+      <h1 className="thingstodo__title">Things to do</h1>
       {thingsToDoArr.length > 0 ? (
         <div className="things_container">{thingsToDoArr}</div>
       ) : (
         <p>N/A</p>
       )}
-      <iframe
-        className="alltrails"
-        // src="https://www.alltrails.com/widget/us/ohio/troy?u=i&sh=ziykwr"
-        src="https://www.alltrails.com/widget/us/ohio/troy?u=i&sh=ziykwr"
-        width="100%"
-        height="400"
-        frameBorder="0"
-        scrolling="no"
-        title="AllTrails: Trail Guides and Maps for Hiking, Camping, and Running"
-      ></iframe>
     </div>
   );
 }
