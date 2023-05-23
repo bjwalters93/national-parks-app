@@ -1,6 +1,8 @@
 import * as React from "react";
 import "./ThingsToDo.css";
 import { Params, useLoaderData } from "react-router-dom";
+import LazyLoad from "react-lazy-load";
+import ImageError from "../images/ImageError.png";
 
 type thingsToDoData = {
   thingsToDo: {
@@ -31,6 +33,10 @@ export async function loadThingsToDo({
   return { thingsToDo: thingsToDoData.data };
 }
 
+function imageError(event: React.SyntheticEvent<HTMLImageElement, Event>) {
+  event.currentTarget.src = ImageError;
+}
+
 function ThingsToDo() {
   const ThingsToDo_LD = useLoaderData() as thingsToDoData;
   console.log("ThingsToDo_LD:", ThingsToDo_LD);
@@ -38,65 +44,97 @@ function ThingsToDo() {
   if (ThingsToDo_LD.thingsToDo.length > 0) {
     thingsToDoArr = ThingsToDo_LD.thingsToDo.map((thing) => {
       return (
-        <div key={thing.id}>
+        <div key={thing.id} className="todo_container">
           <h2>{thing.title}</h2>
-          <img
-            src={thing.images[0].url}
-            alt={thing.images[0].altText}
-            width={100}
-          />
-          <p>
-            {thing.shortDescription !== ""
-              ? `Description: ${thing.shortDescription.replace(
-                  /(<([^>]+)>)/gi,
-                  ""
-                )}`
-              : "Description: N/A"}
-          </p>
-          <p>
-            {thing.duration !== ""
-              ? `Duration: ${thing.duration.replace(/(<([^>]+)>)/gi, "")}`
-              : "Duration: N/A"}
-          </p>
-          <p>
-            {thing.season.length > 0
-              ? `Season: ${thing.season.join(", ")}`
-              : "Season: N/A"}
-          </p>
-          <p>
-            {thing.seasonDescription !== ""
-              ? `Season Description: ${thing.seasonDescription.replace(
-                  /(<([^>]+)>)/gi,
-                  ""
-                )}`
-              : "Season Description: N/A"}
-          </p>
-          <p>
-            {thing.feeDescription !== ""
-              ? `Fee: ${thing.feeDescription.replace(/(<([^>]+)>)/gi, "")}`
-              : "Fee: N/A"}
-          </p>
-          <p>
-            {thing.accessibilityInformation !== ""
-              ? `Accessibility: ${thing.accessibilityInformation.replace(
-                  /(<([^>]+)>)/gi,
-                  ""
-                )}`
-              : "Accessibility: N/A"}
-          </p>
-          <p>
-            {thing.reservationDescription !== ""
-              ? `Reservation: ${thing.reservationDescription.replace(
-                  /(<([^>]+)>)/gi,
-                  ""
-                )}`
-              : "Reservation: N/A"}
-          </p>
-          <p>
-            {thing.petsDescription !== ""
-              ? `Pets: ${thing.petsDescription.replace(/(<([^>]+)>)/gi, "")}`
-              : "Pets: N/A"}
-          </p>
+          <LazyLoad width="100%" threshold={0.1}>
+            <img
+              className="thingstodo_img"
+              src={thing.images[0].url}
+              alt={thing.images[0].altText}
+              onError={imageError}
+            />
+          </LazyLoad>
+
+          {thing.shortDescription !== "" ? (
+            <p>
+              <span className="todo_bold">Description:</span>{" "}
+              {thing.shortDescription.replace(/(<([^>]+)>)/gi, "")}
+            </p>
+          ) : (
+            <p>
+              <span className="todo_bold">Description:</span> N/A
+            </p>
+          )}
+          {thing.duration !== "" ? (
+            <p>
+              <span className="todo_bold">Duration:</span>{" "}
+              {thing.duration.replace(/(<([^>]+)>)/gi, "")}
+            </p>
+          ) : (
+            <p>
+              <span className="todo_bold">Duration:</span> N/A
+            </p>
+          )}
+          {thing.season.length > 0 ? (
+            <p>
+              <span className="todo_bold">Season:</span>{" "}
+              {thing.season.join(", ")}
+            </p>
+          ) : (
+            <p>
+              <span className="todo_bold">Season:</span> N/A
+            </p>
+          )}
+          {thing.seasonDescription !== "" ? (
+            <p>
+              <span className="todo_bold">Season Description:</span>{" "}
+              {thing.seasonDescription.replace(/(<([^>]+)>)/gi, "")}
+            </p>
+          ) : (
+            <p>
+              <span className="todo_bold">Season Description:</span> N/A{" "}
+            </p>
+          )}
+          {thing.feeDescription !== "" ? (
+            <p>
+              <span className="todo_bold">Fee:</span>{" "}
+              {thing.feeDescription.replace(/(<([^>]+)>)/gi, "")}
+            </p>
+          ) : (
+            <p>
+              <span className="todo_bold">Fee:</span> N/A
+            </p>
+          )}
+          {thing.accessibilityInformation !== "" ? (
+            <p>
+              <span className="todo_bold">Accessibility:</span>{" "}
+              {thing.accessibilityInformation.replace(/(<([^>]+)>)/gi, "")}
+            </p>
+          ) : (
+            <p>
+              <span className="todo_bold">Accessibility:</span> N/A
+            </p>
+          )}
+          {thing.reservationDescription !== "" ? (
+            <p>
+              <span className="todo_bold">Reservation:</span>{" "}
+              {thing.reservationDescription.replace(/(<([^>]+)>)/gi, "")}
+            </p>
+          ) : (
+            <p>
+              <span className="todo_bold">Reservation:</span> N/A
+            </p>
+          )}
+          {thing.petsDescription !== "" ? (
+            <p>
+              <span className="todo_bold">Pets:</span>{" "}
+              {thing.petsDescription.replace(/(<([^>]+)>)/gi, "")}
+            </p>
+          ) : (
+            <p>
+              <span className="todo_bold">Pets:</span> N/A
+            </p>
+          )}
           {/* <p>{thing.bodyText.replace(/(<([^>]+)>)/gi, "")}</p> */}
         </div>
       );

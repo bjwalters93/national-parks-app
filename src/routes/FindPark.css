@@ -139,9 +139,6 @@
     align-items: flex-start;
     padding: 10px 0;
   }
-  .li_find_park_image {
-    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
-  }
   .lazy_load_container {
     margin: 0 0 10px 0;
   }
