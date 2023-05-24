@@ -1,23 +1,20 @@
 import * as React from "react";
 import "./NewsReleases.css";
 import { Params, useLoaderData } from "react-router-dom";
-import LazyLoad from "react-lazy-load";
-import ImageError from "../images/ImageError.png";
 
 type newsReleasesData = {
-  //   thingsToDo: {
-  //     accessibilityInformation: string;
-  //     feeDescription: string;
-  //     images: { url: string; title: string; altText: string }[];
-  //     petsDescription: string;
-  //     reservationDescription: string;
-  //     season: string[];
-  //     seasonDescription: string;
-  //     shortDescription: string;
-  //     title: string;
-  //     id: string;
-  //     duration: string;
-  //   }[];
+  newsReleases: {
+    abstract: string;
+    image: {
+      title: string;
+      altText: string;
+      url: string;
+    };
+    releaseDate: string;
+    title: string;
+    id: string;
+    url: string;
+  }[];
 };
 
 export async function loadNewsReleases({
@@ -25,20 +22,44 @@ export async function loadNewsReleases({
 }: {
   params: Params;
 }): Promise<newsReleasesData | null> {
-  const thingsToDoResponse = await fetch(
-    `https://developer.nps.gov/api/v1/thingstodo?limit=1000&parkCode=${params.park}&api_key=9JlgO9YSfRlkWXenMR8S3X3uW9uW0cZBdycA46tm`
+  const newsReleaseResponse = await fetch(
+    `https://developer.nps.gov/api/v1/newsreleases?limit=1000&parkCode=${params.park}&api_key=9JlgO9YSfRlkWXenMR8S3X3uW9uW0cZBdycA46tm`
   );
-  const thingsToDoData = await thingsToDoResponse.json();
-  console.log(params.park);
-  return { thingsToDo: thingsToDoData.data };
-}
-
-function imageError(event: React.SyntheticEvent<HTMLImageElement, Event>) {
-  event.currentTarget.src = ImageError;
+  const newsReleaseData = await newsReleaseResponse.json();
+  return { newsReleases: newsReleaseData.data };
 }
 
 function NewsReleases() {
-  return <div className="NewsReleases">News Releases</div>;
+  const NewsReleases_LD = useLoaderData() as newsReleasesData;
+  let newsReleasesArr: React.ReactElement[] = [];
+  if (NewsReleases_LD.newsReleases.length > 0) {
+    newsReleasesArr = NewsReleases_LD.newsReleases.map((article) => {
+      return (
+        <div className="article_container" key={article.id}>
+          <h2>{article.title}</h2>
+          <p>
+            <span className="news_bold">Release Date:</span>{" "}
+            {article.releaseDate}
+          </p>
+          <p>{article.abstract}</p>
+          <a href={article.url} target="_blank" rel="noreferrer">
+            View full article
+          </a>
+        </div>
+      );
+    });
+  }
+  console.log("NewsReleases_LD:", NewsReleases_LD);
+  return (
+    <div className="NewsReleases">
+      <h1 className="newsReleases__title">News Releases</h1>
+      {newsReleasesArr.length > 0 ? (
+        <div className="newsList_container">{newsReleasesArr}</div>
+      ) : (
+        <p>Currently, there are no news releases.</p>
+      )}
+    </div>
+  );
 }
 
 export default NewsReleases;

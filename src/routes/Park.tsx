@@ -85,7 +85,7 @@ function Park() {
   const Park_LD = useLoaderData() as parkData;
   const viewportWidth = React.useContext(viewportContext) as { width: number };
   const breakpoint = 600;
-  console.log(Park_LD);
+  console.log("Park_LD:", Park_LD);
 
   const imagesArr1: {
     src: string;

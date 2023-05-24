@@ -46,14 +46,16 @@ function ThingsToDo() {
       return (
         <div key={thing.id} className="todo_container">
           <h2>{thing.title}</h2>
-          <LazyLoad width="100%" threshold={0.1}>
-            <img
-              className="thingstodo_img"
-              src={thing.images[0].url}
-              alt={thing.images[0].altText}
-              onError={imageError}
-            />
-          </LazyLoad>
+          {thing.images.length > 0 && (
+            <LazyLoad width="100%" threshold={0.1}>
+              <img
+                className="thingstodo_img"
+                src={thing.images[0].url}
+                alt={thing.images[0].altText}
+                onError={imageError}
+              />
+            </LazyLoad>
+          )}
 
           {thing.shortDescription !== "" ? (
             <p>
