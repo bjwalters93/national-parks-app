@@ -28,6 +28,7 @@ export async function loadHiking({
 
 function Hiking() {
   const Hiking_LD = useLoaderData() as hikingData;
+  const [allTrailsError, setAllTrailsErr] = React.useState(false);
   console.log("Hiking_LD:", Hiking_LD);
   const state = Hiking_LD.park[0].addresses[0].stateCode;
   const city = Hiking_LD.park[0].addresses[0].city;
@@ -53,18 +54,45 @@ function Hiking() {
     console.log("allTrailsSrc:", allTrailsSrc);
   }
 
+  async function testAllTrails() {
+    try {
+      const response = await fetch(allTrailsSrc);
+      if (!response.ok) {
+        setAllTrailsErr(true);
+        throw new Error(`Error: ${response.status}`);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  React.useEffect(() => {
+    testAllTrails();
+  });
+
   return (
     <div className="Hiking">
       <h1 className="hiking__title">Hiking</h1>
-      <iframe
-        className="alltrails"
-        src={allTrailsSrc}
-        width="100%"
-        height="400"
-        frameBorder="0"
-        scrolling="no"
-        title="AllTrails: Trail Guides and Maps for Hiking, Camping, and Running"
-      ></iframe>
+      {!allTrailsError ? (
+        <iframe
+          className="alltrails"
+          src={allTrailsSrc}
+          width="100%"
+          height="400"
+          frameBorder="0"
+          scrolling="no"
+          title="AllTrails: Trail Guides and Maps for Hiking, Camping, and Running"
+        ></iframe>
+      ) : (
+        <p style={{ margin: "10px 0" }}>
+          Sorry, an uknown error has occured. Sometimes the address isn't known
+          to AllTrails or the map data may not be available. Try searching for
+          the park on{" "}
+          <a href="https://www.alltrails.com/" target="_blank" rel="noreferrer">
+            All Trails.
+          </a>
+        </p>
+      )}
     </div>
   );
 }
