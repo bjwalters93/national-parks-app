@@ -17,6 +17,8 @@ type thingsToDoData = {
     title: string;
     id: string;
     duration: string;
+    url: string;
+    longDescription: string;
   }[];
 };
 
@@ -47,7 +49,7 @@ function ThingsToDo() {
         <div key={thing.id} className="todo_container">
           <h2>{thing.title}</h2>
           {thing.images.length > 0 && (
-            <LazyLoad width="100%" threshold={0.1}>
+            <LazyLoad width="100%" height={500} threshold={0.1}>
               <img
                 className="thingstodo_img"
                 src={thing.images[0].url}
@@ -56,7 +58,6 @@ function ThingsToDo() {
               />
             </LazyLoad>
           )}
-
           {thing.shortDescription !== "" ? (
             <p>
               <span className="todo_bold">Description:</span>{" "}
@@ -137,6 +138,9 @@ function ThingsToDo() {
               <span className="todo_bold">Pets:</span> N/A
             </p>
           )}
+          <a href={thing.url} target="_blank" rel="noreferrer">
+            View more information on Naptional Park Service
+          </a>
           {/* <p>{thing.bodyText.replace(/(<([^>]+)>)/gi, "")}</p> */}
         </div>
       );
