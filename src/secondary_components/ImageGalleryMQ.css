@@ -5,6 +5,8 @@
   height: 200px;
   overflow-y: scroll;
   justify-content: center;
+  position: relative;
+  z-index: 6;
 }
 
 .gallery_images_mq {

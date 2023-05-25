@@ -1,5 +1,7 @@
 .ParkMain {
   margin-top: 157px;
+  position: relative;
+  z-index: 9;
 }
 
 .secondary_navbar {
@@ -12,7 +14,7 @@
   position: fixed;
   top: 110px;
   width: 100%;
-  z-index: 2;
+  z-index: 8;
   box-sizing: border-box;
   /* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); */
   /* border-bottom: 2px solid black; */
@@ -79,11 +81,11 @@
   width: 200px;
   position: fixed;
   top: 157px;
-  z-index: 1;
+  z-index: 7;
   background-color: white;
   padding: 20px;
   box-shadow: -3px 3px 5px rgba(0, 0, 0, 0.2);
-  transition: all 0.25s ease-in-out;
+  transition: all 0.15s ease-in-out;
 }
 
 .menu_hide a {
@@ -114,11 +116,11 @@
     position: fixed;
     top: 157px;
     right: 0;
-    z-index: 1;
+    z-index: 7;
     background-color: white;
     padding: 20px;
     box-shadow: -3px 3px 5px rgba(0, 0, 0, 0.2);
-    transition: all 0.25s ease-in-out;
+    transition: all 0.15s ease-in-out;
   }
   .secondary_navlinks_mq {
     display: initial;
@@ -169,6 +171,9 @@
     padding: 5px 20px;
   }
   .menu_show {
+    top: 90px;
+  }
+  .menu_hide {
     top: 90px;
   }
 }
