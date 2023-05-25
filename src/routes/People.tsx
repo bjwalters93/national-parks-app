@@ -1,7 +1,7 @@
 import * as React from "react";
 import "./People.css";
 import { Params, useLoaderData } from "react-router-dom";
-import LazyLoad from "react-lazy-load";
+// import LazyLoad from "react-lazy-load";
 import ImageError from "../images/ImageError.png";
 
 type people = {

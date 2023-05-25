@@ -139,7 +139,7 @@ function ThingsToDo() {
             </p>
           )}
           <a href={thing.url} target="_blank" rel="noreferrer">
-            View more information on Naptional Park Service
+            View more information on National Park Service
           </a>
           {/* <p>{thing.bodyText.replace(/(<([^>]+)>)/gi, "")}</p> */}
         </div>
