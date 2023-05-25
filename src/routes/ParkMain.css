@@ -72,6 +72,7 @@
   flex-direction: column;
   align-items: center;
   cursor: pointer;
+  color: black;
 }
 
 /* MEDIA QUERY CLASSES */

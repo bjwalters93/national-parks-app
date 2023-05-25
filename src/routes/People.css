@@ -17,17 +17,11 @@
 }
 
 .People h2 {
-  /* margin-top: 10px; */
-  /* margin-bottom: 10px; */
-  margin: 0;
-  padding: 10px 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
   line-height: 1;
   font-size: 20px;
   cursor: pointer;
-}
-
-.People h2:hover {
-  background-color: rgb(227, 227, 227);
 }
 
 .people_container {
