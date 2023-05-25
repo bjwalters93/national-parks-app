@@ -56,7 +56,7 @@ function Hiking() {
 
   async function testAllTrails() {
     try {
-      const response = await fetch(allTrailsSrc);
+      const response = await fetch(allTrailsSrc, { mode: "no-cors" });
       if (!response.ok) {
         setAllTrailsErr(true);
         throw new Error(`Error: ${response.status}`);
