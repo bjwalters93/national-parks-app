@@ -16,6 +16,50 @@
   margin: 10px 0;
 }
 
+.People h2 {
+  /* margin-top: 10px; */
+  /* margin-bottom: 10px; */
+  margin: 0;
+  padding: 10px 0;
+  line-height: 1;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.People h2:hover {
+  background-color: rgb(227, 227, 227);
+}
+
+.people_container {
+  margin-left: 10px;
+}
+
+.person_container {
+  border-top: 1px solid black;
+}
+
 .person_img {
   width: 100px;
+}
+
+.person_expand {
+  display: initial;
+}
+
+.person_retract {
+  display: none;
+}
+
+.expand_arrow {
+  height: 10px;
+  margin-left: 10px;
+  transform: rotate(0deg);
+  transition: transform 0.15s linear;
+}
+
+.transform_arrow {
+  height: 10px;
+  margin-left: 10px;
+  transform: rotate(180deg);
+  transition: transform 0.15s linear;
 }

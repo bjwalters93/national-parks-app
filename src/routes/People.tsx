@@ -1,8 +1,8 @@
 import * as React from "react";
 import "./People.css";
 import { Params, useLoaderData } from "react-router-dom";
-// import LazyLoad from "react-lazy-load";
-import ImageError from "../images/ImageError.png";
+import LazyLoad from "react-lazy-load";
+import expandArrow from "../images/expandArrow.png";
 
 type people = {
   people: {
@@ -37,28 +37,62 @@ export async function loadPeople({
   return { people: peopleData.data };
 }
 
-function imageError(event: React.SyntheticEvent<HTMLImageElement, Event>) {
-  event.currentTarget.src = ImageError;
-}
-
 function People() {
   const People_LD = useLoaderData() as people;
   console.log("People_LD:", People_LD.people);
-  //   if People_LD.people.length > 0 ----- condition for rendering. if false "N/A"
+  const [trackPerson, setTrackPerson] = React.useState<string | null>(null);
+  const refs: any = React.useRef([]);
   let peopleArr: React.ReactElement[] = [];
   if (People_LD.people.length > 0) {
-    peopleArr = People_LD.people.map((person) => {
+    peopleArr = People_LD.people.map((person, index) => {
       const person_description = { __html: person.bodyText };
       return (
         <div className="person_container" key={person.id}>
-          <h2>{person.title}</h2>
-          <img
-            className="person_img"
-            src={person.images[0].url}
-            alt={person.images[0].altText}
-            onError={imageError}
-          />
-          <div dangerouslySetInnerHTML={person_description} />
+          <h2
+            ref={(element) => {
+              refs.current[index] = element;
+            }}
+            onClick={() => {
+              if (trackPerson === null) {
+                setTrackPerson(person.id);
+              } else if (trackPerson !== null && trackPerson !== person.id) {
+                setTrackPerson(person.id);
+              } else {
+                setTrackPerson(null);
+              }
+              setTimeout(() => {
+                refs.current[index].scrollIntoView({
+                  behavior: "smooth",
+                  block: "center",
+                });
+              }, 100);
+            }}
+          >
+            {person.title}
+            <img
+              src={expandArrow}
+              alt="expand arrow"
+              className={
+                trackPerson !== person.id ? "expand_arrow" : "transform_arrow"
+              }
+            />
+          </h2>
+          <div
+            className={
+              trackPerson === person.id ? "person_expand" : "person_retract"
+            }
+          >
+            {person.images[0].url !== "" && (
+              <LazyLoad>
+                <img
+                  className="person_img"
+                  src={person.images[0].url}
+                  alt={person.images[0].altText}
+                />
+              </LazyLoad>
+            )}
+            <div dangerouslySetInnerHTML={person_description} />
+          </div>
         </div>
       );
     });

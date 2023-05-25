@@ -3,6 +3,7 @@ import { Outlet, NavLink, Link, useParams } from "react-router-dom";
 import "./ParkMain.css";
 import menuIcon2Black from "../images/menuIcon2Black.png";
 import arrowIcon from "../images/arrowIcon.png";
+import scrollToTop from "../images/scrollToTop.png";
 import { viewportContext } from "./RootComponent";
 
 function ParkMain() {
@@ -98,6 +99,25 @@ function ParkMain() {
         </li>
       </ul>
       <Outlet />
+      <button
+        className="scroll_to_top"
+        onClick={() =>
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          })
+        }
+      >
+        <img
+          src={scrollToTop}
+          alt="scroll to top"
+          width={20}
+          style={{
+            display: "block",
+          }}
+        />
+        Top
+      </button>
     </div>
   );
 }
