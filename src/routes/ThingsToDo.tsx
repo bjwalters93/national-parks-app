@@ -3,6 +3,7 @@ import "./ThingsToDo.css";
 import { Params, useLoaderData } from "react-router-dom";
 import LazyLoad from "react-lazy-load";
 import ImageError from "../images/ImageError.png";
+import { viewportContext } from "./RootComponent";
 
 type thingsToDoData = {
   thingsToDo: {
@@ -42,14 +43,27 @@ function imageError(event: React.SyntheticEvent<HTMLImageElement, Event>) {
 function ThingsToDo() {
   const ThingsToDo_LD = useLoaderData() as thingsToDoData;
   console.log("ThingsToDo_LD:", ThingsToDo_LD);
+  const viewportWidth = React.useContext(viewportContext) as {
+    width: number;
+  };
+  const breakpoint = 600;
   let thingsToDoArr: React.ReactElement[] = [];
   if (ThingsToDo_LD.thingsToDo.length > 0) {
     thingsToDoArr = ThingsToDo_LD.thingsToDo.map((thing) => {
       return (
         <div key={thing.id} className="todo_container">
           <h2>{thing.title}</h2>
-          {thing.images.length > 0 && (
+          {thing.images.length > 0 && viewportWidth.width > breakpoint ? (
             <LazyLoad width="100%" height={500} threshold={0.1}>
+              <img
+                className="thingstodo_img"
+                src={thing.images[0].url}
+                alt={thing.images[0].altText}
+                onError={imageError}
+              />
+            </LazyLoad>
+          ) : (
+            <LazyLoad width="100%" height={250} threshold={0.1}>
               <img
                 className="thingstodo_img"
                 src={thing.images[0].url}
