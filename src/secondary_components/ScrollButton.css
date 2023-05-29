@@ -1,0 +1,32 @@
+.scroll_to_top_hide {
+  /* display: none; */
+  border: none;
+  background-color: transparent;
+  position: fixed;
+  z-index: 20;
+  bottom: -40px;
+  right: 0px;
+  font-weight: 800;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  color: black;
+  transition: bottom 0.25s linear;
+}
+
+.scroll_to_top_visible {
+  border: none;
+  background-color: transparent;
+  position: fixed;
+  z-index: 20;
+  bottom: 3px;
+  right: 0px;
+  font-weight: 800;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  color: black;
+  transition: bottom 0.25s linear;
+}

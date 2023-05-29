@@ -5,6 +5,7 @@ import homeIconWhite from "../images/homeIconWhite.png";
 import findIconWhite from "../images/findIconWhite.png";
 import { Outlet, NavLink, ScrollRestoration } from "react-router-dom";
 import useViewport from "../custom_hooks/useViewport";
+import ScrollButton from "../secondary_components/ScrollButton";
 
 export const viewportContext = React.createContext<{ width: number } | null>(
   null
@@ -47,6 +48,7 @@ function RootComponent() {
           </nav>
         </div>
         <Outlet />
+        <ScrollButton />
         <ScrollRestoration
           getKey={(location, matches) => {
             const paths = ["/find_park"];
