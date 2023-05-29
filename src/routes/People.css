@@ -13,7 +13,7 @@
 }
 
 .People p {
-  margin: 10px 0;
+  margin: 0 0 10px 0;
 }
 
 .People h2 {
@@ -21,6 +21,12 @@
   margin-bottom: 10px;
   line-height: 1;
   font-size: 20px;
+}
+
+.title_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   cursor: pointer;
 }
 
@@ -31,6 +37,7 @@
 .person_container {
   border-top: 1px solid black;
   border-bottom: 1px solid black;
+  padding: 0 10px;
 }
 
 .People .person_container:first-child {
@@ -65,15 +72,29 @@
 }
 
 .expand_arrow {
+  display: block;
   height: 10px;
-  margin-left: 10px;
   transform: rotate(0deg);
   transition: transform 0.15s linear;
 }
 
 .transform_arrow {
+  display: block;
   height: 10px;
-  margin-left: 10px;
   transform: rotate(180deg);
   transition: transform 0.15s linear;
+}
+
+@media only screen and (max-width: 400px) {
+  .People h2 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    line-height: 1;
+    font-size: 20px;
+    cursor: pointer;
+    text-overflow: ellipsis;
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+  }
 }

@@ -48,10 +48,8 @@ function People() {
       const person_description = { __html: person.bodyText };
       return (
         <div className="person_container" key={person.id}>
-          <h2
-            ref={(element) => {
-              refs.current[index] = element;
-            }}
+          <div
+            className="title_container"
             onClick={() => {
               if (trackPerson === null) {
                 setTrackPerson(person.id);
@@ -68,7 +66,13 @@ function People() {
               }, 100);
             }}
           >
-            {person.title}
+            <h2
+              ref={(element) => {
+                refs.current[index] = element;
+              }}
+            >
+              {person.title}
+            </h2>
             <img
               src={expandArrow}
               alt="expand arrow"
@@ -76,7 +80,7 @@ function People() {
                 trackPerson !== person.id ? "expand_arrow" : "transform_arrow"
               }
             />
-          </h2>
+          </div>
           <div
             className={
               trackPerson === person.id ? "person_expand" : "person_retract"
@@ -100,7 +104,7 @@ function People() {
   return (
     <div className="People">
       <h1 className="people__title">People</h1>
-      <p>A list of people related to this park.</p>
+      <p>A list of people and information related to this park.</p>
       {peopleArr.length > 0 ? (
         <div className="people_container">{peopleArr}</div>
       ) : (
