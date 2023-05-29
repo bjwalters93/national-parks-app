@@ -67,7 +67,7 @@
 .person_retract {
   /* display: none; */
   max-height: 0px;
-  overflow: clip;
+  overflow-y: scroll;
   transition: max-height 0.1s linear;
 }
 
