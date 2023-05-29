@@ -83,7 +83,7 @@ function People() {
             }
           >
             {person.images[0].url !== "" && (
-              <LazyLoad>
+              <LazyLoad width="90%" threshold={0.1} className="person_img_cont">
                 <img
                   className="person_img"
                   src={person.images[0].url}
@@ -100,6 +100,7 @@ function People() {
   return (
     <div className="People">
       <h1 className="people__title">People</h1>
+      <p>A list of people related to this park.</p>
       {peopleArr.length > 0 ? (
         <div className="people_container">{peopleArr}</div>
       ) : (

@@ -4,6 +4,7 @@ import { stateCodes } from "../utilityData";
 import { useLoaderData, Link, Form } from "react-router-dom";
 import LazyLoad from "react-lazy-load";
 import ImageError from "../images/ImageError.png";
+import scrollToTop from "../images/scrollToTop.png";
 
 type parkListData = {
   stateCode: string;
@@ -105,6 +106,25 @@ function FindPark() {
         </button>
       </Form>
       {parkArr.length > 0 && <ul className="list_container">{parkArr}</ul>}
+      <button
+        className="scroll_to_top"
+        onClick={() =>
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          })
+        }
+      >
+        <img
+          src={scrollToTop}
+          alt="scroll to top"
+          width={20}
+          style={{
+            display: "block",
+          }}
+        />
+        Top
+      </button>
     </div>
   );
 }

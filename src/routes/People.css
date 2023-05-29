@@ -30,18 +30,38 @@
 
 .person_container {
   border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.People .person_container:first-child {
+  border-top: 2px solid black;
+}
+
+.People .person_container:last-child {
+  border-bottom: 2px solid black;
+}
+
+.person_img_cont {
+  margin: 0 auto;
 }
 
 .person_img {
-  width: 100px;
+  width: 100%;
+  /* margin: 0 auto; */
 }
 
 .person_expand {
-  display: initial;
+  /* display: initial; */
+  max-height: 500px;
+  overflow-y: scroll;
+  transition: max-height 0.1s linear;
 }
 
 .person_retract {
-  display: none;
+  /* display: none; */
+  max-height: 0px;
+  overflow: clip;
+  transition: max-height 0.1s linear;
 }
 
 .expand_arrow {
