@@ -156,10 +156,12 @@ function Videos() {
                   onClick={() => {
                     setIndex(index);
                     setListTracker(index);
-                    window.scrollTo({
-                      top: 0,
-                      behavior: "smooth",
-                    });
+                    setTimeout(() => {
+                      window.scrollTo({
+                        top: 0,
+                        behavior: "smooth",
+                      });
+                    }, 250);
                   }}
                   key={index}
                 >
