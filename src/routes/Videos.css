@@ -5,3 +5,27 @@
   /* border: 1px solid black; */
   padding: 0 30px 40px;
 }
+
+.Videos p {
+  margin: 10px 0 0 0;
+}
+
+.videos_video {
+  display: block;
+  width: 100%;
+  /* border: 2px solid green; */
+}
+
+.videos_list_h3 {
+  margin: 10px 0 5px 0;
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: 500;
+}
+
+.title_video_main {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  line-height: 1;
+  font-size: 20px;
+}
