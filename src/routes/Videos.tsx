@@ -68,7 +68,7 @@ function Videos() {
   } else {
     return (
       <div className="Videos">
-        <h1 style={{ marginBottom: "0", marginTop: "0" }}>Videos</h1>
+        <h1 className="videos__title">Videos</h1>
         <p style={{ margin: "0 0 10px 0" }}>{videoArr.length} Videos</p>
         <div
           style={{

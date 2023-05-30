@@ -6,6 +6,13 @@
   padding: 0 30px 40px;
 }
 
+.videos__title {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  line-height: 1;
+  font-size: 26px;
+}
+
 .Videos p {
   margin: 10px 0 0 0;
 }
