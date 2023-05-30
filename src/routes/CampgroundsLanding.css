@@ -23,8 +23,14 @@
 .campground_container li {
   font-size: initial;
   font-weight: initial;
+  margin: 6px 0;
 }
 
 .Campgrounds ol {
   padding-left: 30px;
+}
+
+.span_bold_1_CL {
+  font-weight: 700;
+  /* text-decoration: underline; */
 }

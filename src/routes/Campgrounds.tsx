@@ -72,6 +72,7 @@ type campgroundsData = {
       title: string;
       altText: string;
       url: string;
+      caption: string;
     }[];
     name: string;
     numberOfSitesFirstComeFirstServe: string;
@@ -91,6 +92,9 @@ type campgroundsData = {
     }[];
     regulationsOverview: string;
     reservationInfo: string;
+    reservationUrl: string;
+    weatherOverview: string;
+    url: string;
   }[];
 };
 
@@ -105,13 +109,11 @@ export async function loadCampgrounds({
     `https://developer.nps.gov/api/v1/campgrounds?limit=1000&parkCode=${params.park}&api_key=9JlgO9YSfRlkWXenMR8S3X3uW9uW0cZBdycA46tm`
   );
   const campgroundsData = await campgroundsResponse.json();
-  console.log(params.park);
   return { campgrounds: campgroundsData.data };
 }
 
 function Campgrounds() {
   const Campgrounds_LD = useLoaderData() as campgroundsData;
-  console.log("Campgrounds_LD:", Campgrounds_LD);
 
   return (
     <div className="Campgrounds">
