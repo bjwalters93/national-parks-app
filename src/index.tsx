@@ -15,6 +15,7 @@ import People, { loadPeople } from "./routes/People";
 import Campgrounds, { loadCampgrounds } from "./routes/Campgrounds";
 import CampgroundsLanding from "./routes/CampgroundsLanding";
 import CampInfo from "./routes/CampInfo";
+import Alerts, { loadAlerts } from "./routes/Alerts";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -54,7 +55,7 @@ const router = createBrowserRouter([
               { path: ":campName", element: <CampInfo /> },
             ],
           },
-          { path: "alerts", element: <h1>Alerts</h1> },
+          { path: "alerts", element: <Alerts />, loader: loadAlerts },
           {
             path: "directions",
             element: <Directions />,
