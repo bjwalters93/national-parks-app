@@ -1,0 +1,17 @@
+.backlink__container_campgrounds {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  /* margin: 10px 0 0 0; */
+}
+
+.back__link_campgrounds {
+  color: black;
+}
+
+.back__text_campgrounds {
+  font-family: "Kanit", sans-serif;
+  margin-left: 10px;
+  font-size: 18px;
+  font-weight: 600;
+}

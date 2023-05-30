@@ -1,0 +1,30 @@
+.CampgroundsLanding {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  line-height: 1;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.CampgroundsLanding h2 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 5px;
+  line-height: 1;
+  font-size: 20px;
+}
+
+.campground_container ul {
+  margin: 0;
+  list-style-type: initial;
+  padding-left: 20px;
+}
+
+.campground_container li {
+  font-size: initial;
+  font-weight: initial;
+}
+
+.Campgrounds ol {
+  padding-left: 30px;
+}

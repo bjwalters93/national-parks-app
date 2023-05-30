@@ -13,6 +13,8 @@ import Hiking, { loadHiking } from "./routes/Hiking";
 import NewsReleases, { loadNewsReleases } from "./routes/NewsReleases";
 import People, { loadPeople } from "./routes/People";
 import Campgrounds, { loadCampgrounds } from "./routes/Campgrounds";
+import CampgroundsLanding from "./routes/CampgroundsLanding";
+import CampInfo from "./routes/CampInfo";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -44,6 +46,13 @@ const router = createBrowserRouter([
             path: "campgrounds",
             element: <Campgrounds />,
             loader: loadCampgrounds,
+            children: [
+              {
+                index: true,
+                element: <CampgroundsLanding />,
+              },
+              { path: ":campName", element: <CampInfo /> },
+            ],
           },
           { path: "visitorcenters", element: <h1>visitorcenters</h1> },
           { path: "alerts", element: <h1>Alerts</h1> },

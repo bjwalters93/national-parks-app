@@ -1,6 +1,7 @@
 import * as React from "react";
 import "./Campgrounds.css";
 import { Params, useLoaderData } from "react-router-dom";
+import { Outlet, useOutletContext } from "react-router-dom";
 
 type campgroundsData = {
   campgrounds: {
@@ -88,8 +89,12 @@ type campgroundsData = {
         sunday: string;
       };
     }[];
+    regulationsOverview: string;
+    reservationInfo: string;
   }[];
 };
+
+type ContextType = campgroundsData;
 
 export async function loadCampgrounds({
   params,
@@ -106,17 +111,22 @@ export async function loadCampgrounds({
 
 function Campgrounds() {
   const Campgrounds_LD = useLoaderData() as campgroundsData;
-  console.log("Campgrounds_LD:", Campgrounds_LD.campgrounds);
+  console.log("Campgrounds_LD:", Campgrounds_LD);
+
   return (
     <div className="Campgrounds">
       <h1 className="campgrounds__title">Campgrounds</h1>
       {Campgrounds_LD.campgrounds.length === 0 ? (
         <p>There are currently no campgrounds for this park.</p>
       ) : (
-        <p>There are campgrounds!</p>
+        <Outlet context={Campgrounds_LD} />
       )}
     </div>
   );
 }
 
 export default Campgrounds;
+
+export function useCampgroundData() {
+  return useOutletContext<ContextType>();
+}
