@@ -54,12 +54,7 @@ const router = createBrowserRouter([
               { path: ":campName", element: <CampInfo /> },
             ],
           },
-          { path: "visitorcenters", element: <h1>visitorcenters</h1> },
           { path: "alerts", element: <h1>Alerts</h1> },
-          {
-            path: "amenities",
-            element: <h1>Amenities ---- use /amenities/parksplaces</h1>,
-          },
           {
             path: "directions",
             element: <Directions />,

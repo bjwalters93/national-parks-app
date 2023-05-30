@@ -95,6 +95,7 @@ type campgroundsData = {
     reservationUrl: string;
     weatherOverview: string;
     url: string;
+    directionsUrl: string;
   }[];
 };
 

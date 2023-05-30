@@ -28,9 +28,7 @@ function ParkMain() {
           <NavLink to="people">People</NavLink>
           <NavLink to="videos">Videos</NavLink>
           <NavLink to="campgrounds">Campgrounds</NavLink>
-          <NavLink to="visitorcenters">Visitor Centers</NavLink>
           <NavLink to="alerts">Alerts</NavLink>
-          <NavLink to="amenities">Amenities</NavLink>
           <NavLink to="directions">Directions</NavLink>
         </nav>
         <nav className="secondary_navlinks_mq">
@@ -85,13 +83,7 @@ function ParkMain() {
           <NavLink to="campgrounds">Campgrounds</NavLink>
         </li>
         <li onClick={menuToggleFunc}>
-          <NavLink to="visitorcenters">Visitor Centers</NavLink>
-        </li>
-        <li onClick={menuToggleFunc}>
           <NavLink to="alerts">Alerts</NavLink>
-        </li>
-        <li onClick={menuToggleFunc}>
-          <NavLink to="amenities">Amenities</NavLink>
         </li>
         <li onClick={menuToggleFunc}>
           <NavLink to="directions">Directions</NavLink>

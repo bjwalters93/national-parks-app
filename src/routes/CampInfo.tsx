@@ -105,6 +105,7 @@ type campgroundsData = {
   reservationUrl: string;
   weatherOverview: string;
   url: string;
+  directionsUrl: string;
 };
 
 function CampInfo() {
@@ -114,29 +115,6 @@ function CampInfo() {
     (element) => element.name === Campground_params.campName
   ) as campgroundsData;
   console.log("campground:", campground);
-
-  const mapAddress = campground.addresses;
-
-  const city = mapAddress[0].city;
-  const line1 = mapAddress[0].line1;
-  const line2 = mapAddress[0].line2;
-  const line3 = mapAddress[0].line3;
-  const postalCode = mapAddress[0].postalCode;
-  const stateCode = mapAddress[0].stateCode;
-  let mapUrlString;
-  if (line1 !== "" && line2 === "" && line3 === "") {
-    mapUrlString = encodeURI(`${line1},${city},${stateCode},${postalCode}`);
-  } else if (line1 !== "" && line2 !== "" && line3 === "") {
-    mapUrlString = encodeURI(
-      `${line1},${line2},${city},${stateCode},${postalCode}`
-    );
-  } else if (line1 !== "" && line2 !== "" && line3 !== "") {
-    mapUrlString = encodeURI(
-      `${line1},${line2},${line3},${city},${stateCode},${postalCode}`
-    );
-  }
-
-  console.log(mapUrlString);
 
   const slides = campground.images.map((image) => {
     return {
@@ -213,15 +191,11 @@ function CampInfo() {
       </p>
       <p>
         <span className="span_bold_1_CI">Directions: </span>
-        {campground.addresses.length === 0 ? (
+        {campground.directionsUrl === "" ? (
           "N/A"
         ) : (
-          <a
-            href={`https://www.google.com/maps/search/?api=1&query=${mapUrlString}`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Google Maps
+          <a href={campground.directionsUrl} target="_blank" rel="noreferrer">
+            Click here for directions.
           </a>
         )}
       </p>
