@@ -27,7 +27,6 @@ function Videos() {
   const [inputHeight, setInputHeight] = React.useState<number>();
   const inputRef = React.useRef<HTMLDivElement>(null);
   const Videos_LD = useLoaderData() as videoData;
-  console.log("Videos_LD:", Videos_LD);
   const [index, setIndex] = React.useState(0);
   const [listTracker, setListTracker] = React.useState<number>(0);
   const viewportWidth = React.useContext(viewportContext) as {
@@ -42,8 +41,6 @@ function Videos() {
       src: video.versions[0] === undefined ? "" : video.versions[0].url,
     };
   });
-
-  console.log("videoArr:", videoArr);
 
   React.useEffect(() => {
     setInputHeight(inputRef.current?.clientHeight);

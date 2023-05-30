@@ -39,7 +39,6 @@ function imageError(event: React.SyntheticEvent<HTMLImageElement, Event>) {
 
 function FindPark() {
   const FindPark_LD = useLoaderData() as parkListData;
-  console.log(FindPark_LD);
   let parkArr: React.ReactElement[] = [];
   if (FindPark_LD !== null) {
     parkArr = FindPark_LD.parkList.map((park) => {

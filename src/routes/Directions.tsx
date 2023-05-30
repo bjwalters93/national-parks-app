@@ -49,7 +49,6 @@ function Directions() {
       `${line1},${line2},${line3},${city},${stateCode},${postalCode}`
     );
   }
-  console.log(mapUrlString);
 
   return (
     <div className="Directions">

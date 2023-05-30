@@ -39,7 +39,6 @@ export async function loadPeople({
 
 function People() {
   const People_LD = useLoaderData() as people;
-  console.log("People_LD:", People_LD.people);
   const [trackPerson, setTrackPerson] = React.useState<string | null>(null);
   const refs: any = React.useRef([]);
   let peopleArr: React.ReactElement[] = [];

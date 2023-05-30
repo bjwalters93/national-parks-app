@@ -16,11 +16,16 @@
   font-weight: 600;
 }
 
+.CampInfo p {
+  margin: 20px 0;
+}
+
 .CampInfo h2 {
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   line-height: 1;
-  font-size: 20px;
+  /* font-size: 20px; */
+  font-size: 30px;
   text-align: center;
 }
 

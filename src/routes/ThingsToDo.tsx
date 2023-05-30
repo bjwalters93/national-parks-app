@@ -32,7 +32,6 @@ export async function loadThingsToDo({
     `https://developer.nps.gov/api/v1/thingstodo?limit=1000&parkCode=${params.park}&api_key=9JlgO9YSfRlkWXenMR8S3X3uW9uW0cZBdycA46tm`
   );
   const thingsToDoData = await thingsToDoResponse.json();
-  console.log(params.park);
   return { thingsToDo: thingsToDoData.data };
 }
 
@@ -42,7 +41,6 @@ function imageError(event: React.SyntheticEvent<HTMLImageElement, Event>) {
 
 function ThingsToDo() {
   const ThingsToDo_LD = useLoaderData() as thingsToDoData;
-  console.log("ThingsToDo_LD:", ThingsToDo_LD);
   const viewportWidth = React.useContext(viewportContext) as {
     width: number;
   };

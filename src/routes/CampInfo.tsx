@@ -114,7 +114,6 @@ function CampInfo() {
   let campground = Campgrounds_LD.campgrounds.find(
     (element) => element.name === Campground_params.campName
   ) as campgroundsData;
-  console.log("campground:", campground);
 
   const slides = campground.images.map((image) => {
     return {
@@ -150,6 +149,16 @@ function CampInfo() {
         {campground.description === "" ? "N/A" : campground.description}
       </p>
       <p>
+        <span className="span_bold_1_CI">Url: </span>
+        {campground.url === "" ? (
+          "N/A"
+        ) : (
+          <a href={campground.url} target="_blank" rel="noreferrer">
+            Find more information on National Parks Service
+          </a>
+        )}
+      </p>
+      <p>
         <span className="span_bold_1_CI">Weather: </span>
         {campground.weatherOverview === "" ? "N/A" : campground.weatherOverview}
       </p>
@@ -158,30 +167,10 @@ function CampInfo() {
         {campground.reservationInfo === "" ? "N/A" : campground.reservationInfo}
       </p>
       <p>
-        <span className="span_bold_1_CI">ReservationUrl: </span>
-        {campground.reservationUrl === "" ? (
-          "N/A"
-        ) : (
-          <a href={campground.reservationUrl} target="_blank" rel="noreferrer">
-            Make your reservation here
-          </a>
-        )}
-      </p>
-      <p>
         <span className="span_bold_1_CI">Regulations: </span>
         {campground.regulationsOverview === ""
           ? "N/A"
           : campground.regulationsOverview}
-      </p>
-      <p>
-        <span className="span_bold_1_CI">Url: </span>
-        {campground.url === "" ? (
-          "N/A"
-        ) : (
-          <a href={campground.url} target="_blank" rel="noreferrer">
-            National Parks Service
-          </a>
-        )}
       </p>
       <p>
         <span className="span_bold_1_CI">Directions Overview: </span>
@@ -189,28 +178,8 @@ function CampInfo() {
           ? "N/A"
           : campground.directionsOverview}
       </p>
-      <p>
-        <span className="span_bold_1_CI">Directions: </span>
-        {campground.directionsUrl === "" ? (
-          "N/A"
-        ) : (
-          <a href={campground.directionsUrl} target="_blank" rel="noreferrer">
-            Click here for directions.
-          </a>
-        )}
-      </p>
     </div>
   );
-  //   if (campground !== undefined) {
-  //     console.log("campground:", campground.name);
-  //     campgroundElement = (
-  //       <div>
-  //         <h2>{campground.name}</h2>
-  //       </div>
-  //     );
-  //   } else {
-  //     campgroundElement = <p>Sorry, an uknown error has occured.</p>;
-  //   }
   return (
     <div className="CampInfo">
       <div className="backlink__container_campgrounds">

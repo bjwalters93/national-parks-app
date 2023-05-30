@@ -22,13 +22,11 @@ export async function loadHiking({
     `https://developer.nps.gov/api/v1/parks?parkCode=${params.park}&api_key=9JlgO9YSfRlkWXenMR8S3X3uW9uW0cZBdycA46tm`
   );
   const parkData = await parkResponse.json();
-  console.log(params.park);
   return { park: parkData.data };
 }
 
 function Hiking() {
   const Hiking_LD = useLoaderData() as hikingData;
-  console.log("Hiking_LD:", Hiking_LD);
   const state = Hiking_LD.park[0].addresses[0].stateCode;
   const city = Hiking_LD.park[0].addresses[0].city;
   const full = Hiking_LD.park[0].fullName;
@@ -41,16 +39,10 @@ function Hiking() {
   const fullEncode = full.toLowerCase().split(" ").join("-");
   let allTrailsSrc: string;
 
-  console.log("cityEncode:", cityEncode);
-  console.log("stateEncode:", stateEncode);
-  console.log("fullEncode:", fullEncode);
-
   if (Hiking_LD.park[0].designation === "National Park") {
     allTrailsSrc = `https://www.alltrails.com/widget/parks/us/${stateEncode}/${fullEncode}?u=i&sh=ziykwr`;
-    console.log("allTrailsSrc:", allTrailsSrc);
   } else {
     allTrailsSrc = `https://www.alltrails.com/widget/us/${stateEncode}/${cityEncode}?u=i&sh=ziykwr`;
-    console.log("allTrailsSrc:", allTrailsSrc);
   }
 
   return (

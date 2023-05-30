@@ -49,7 +49,6 @@ function NewsReleases() {
       );
     });
   }
-  console.log("NewsReleases_LD:", NewsReleases_LD);
   return (
     <div className="NewsReleases">
       <h1 className="newsReleases__title">News Releases</h1>
