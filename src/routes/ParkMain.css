@@ -102,6 +102,9 @@
 }
 
 @media only screen and (max-width: 1351px) {
+  .ParkMain {
+    margin-top: 177px;
+  }
   .secondary_navlinks {
     display: none;
   }
@@ -164,7 +167,7 @@
 
 @media only screen and (max-width: 600px) {
   .ParkMain {
-    margin-top: 100px;
+    margin-top: 110px;
   }
   .secondary_navbar {
     top: 53px;
