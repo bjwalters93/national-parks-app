@@ -6,7 +6,7 @@ import { useCampgroundData } from "./Campgrounds";
 import Lightbox from "yet-another-react-lightbox";
 import Inline from "yet-another-react-lightbox/plugins/inline";
 import Counter from "yet-another-react-lightbox/plugins/counter";
-import Zoom from "yet-another-react-lightbox/plugins/zoom";
+// import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
@@ -128,7 +128,7 @@ function CampInfo() {
       <h2>{campground.name}</h2>
       {campground.images.length > 0 && (
         <Lightbox
-          plugins={[Inline, Counter, Zoom, Fullscreen]}
+          plugins={[Inline, Counter, Fullscreen]}
           inline={{
             style: { width: "100%", aspectRatio: "3 / 2" },
           }}
