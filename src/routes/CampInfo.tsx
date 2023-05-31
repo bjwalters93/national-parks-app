@@ -5,7 +5,6 @@ import arrowIcon from "../images/arrowIcon.png";
 import { useCampgroundData } from "./Campgrounds";
 import Lightbox from "yet-another-react-lightbox";
 import Inline from "yet-another-react-lightbox/plugins/inline";
-import Captions from "yet-another-react-lightbox/plugins/captions";
 import Counter from "yet-another-react-lightbox/plugins/counter";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
@@ -129,17 +128,12 @@ function CampInfo() {
       <h2>{campground.name}</h2>
       {campground.images.length > 0 && (
         <Lightbox
-          styles={{
-            container: { fontFamily: "'Kanit', sans-serif" },
-            captionsTitle: { fontSize: "14px" },
-            captionsDescription: { fontSize: "12px" },
-          }}
-          plugins={[Inline, Counter, Captions, Zoom, Fullscreen]}
+          plugins={[Inline, Counter, Zoom, Fullscreen]}
           inline={{
             style: { width: "100%", aspectRatio: "3 / 2" },
           }}
           slides={slides}
-          counter={{ style: { top: 16, fontSize: "12px" } }}
+          counter={{ style: { top: -10, fontSize: "12px" } }}
           zoom={{ maxZoomPixelRatio: 10 }}
           animation={{ zoom: 200 }}
         />
