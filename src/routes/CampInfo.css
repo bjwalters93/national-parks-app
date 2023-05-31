@@ -20,6 +20,10 @@
   margin: 20px 0;
 }
 
+.CampInfo a {
+  font-weight: 700;
+}
+
 .CampInfo h2 {
   margin-top: 10px;
   margin-bottom: 20px;
@@ -32,8 +36,4 @@
 .span_bold_1_CI {
   font-weight: 700;
   /* text-decoration: underline; */
-}
-
-.span_bold_2_CI {
-  font-weight: 600;
 }

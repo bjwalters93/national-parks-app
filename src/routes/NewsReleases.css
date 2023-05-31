@@ -32,6 +32,10 @@
   margin: 10px 0;
 }
 
+.NewsReleases a {
+  font-weight: 700;
+}
+
 .news_bold {
   font-weight: 700;
   /* text-decoration: underline; */
