@@ -158,7 +158,7 @@ function Videos() {
                         top: 0,
                         behavior: "smooth",
                       });
-                    }, 250);
+                    }, 500);
                   }}
                   key={index}
                 >
