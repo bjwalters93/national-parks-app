@@ -47,8 +47,12 @@ function FindPark() {
           <div className="lazy_load_container">
             <LazyLoad height={125} width={125} threshold={0.1}>
               <img
-                src={park.images[0].url}
-                alt={park.images[0].altText}
+                src={park.images.length === 0 ? ImageError : park.images[0].url}
+                alt={
+                  park.images.length === 0
+                    ? "No image to display. Sorry."
+                    : park.images[0].altText
+                }
                 className="li_find_park_image"
                 onError={imageError}
               />
